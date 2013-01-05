@@ -1,0 +1,16 @@
+= Message =
+
+Этот класс описывает сообщение, которое показывается пользователю.
+
+Table 1. com.flinty.book.bagheera.common.Message
+
+|| Поле || Описание ||
+|| MessageType type || тип сообщения ||
+|| String message || текст сообщения ||
+
+Table 2. com.flinty.book.bagheera.common.MessageType. Перечисление состоящее из элементов
+
+|| Элемент || Описание ||
+|| MESSAGE || просто сообщение ||
+|| WARNING || нефатальная ошибка ||
+|| ERROR || фатальная ошибка ||
