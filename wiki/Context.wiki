@@ -1,0 +1,12 @@
+= Контекст =
+
+Здесь описаны ключи объектов переменные, доступные в контексте выполнения скрипта с помощью конструкции вида binding.key
+
+
+|| Ключ || Описание ||
+|| callback || Объект типа [supplementary_classes_script_callback.html IScriptCallback] ||
+|| downloader || Объект типа [supplementary_classes_downloader.html Downloader] ||
+|| scriptDataStorage || Объект типа [supplementary_classes_storage.html Storage] ||
+|| scriptFile || java.io.File, указывающий на выполняемый скрипт ||
+
+*Parent topic:* [../appendices/appendices.html Приложения]
