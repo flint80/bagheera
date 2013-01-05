@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru_ru" xml:lang="ru_ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ForumDecorator"/>
+<meta name="abstract" content="В этом приложении описаны функции, добавленные ForumDecorator.groovy"/>
+<meta name="description" content="В этом приложении описаны функции, добавленные ForumDecorator.groovy"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/appendices.html"/>
+<meta name="DC.Creator" content="Авраменко Владимир"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="appendix_forum_api"/>
+<meta name="DC.Language" content="ru_RU"/>
+<link rel="stylesheet" type="text/css" href="../commonltr.css"/>
+<title>ForumDecorator</title>
+</head>
+<body id="appendix_forum_api"><a name="appendix_forum_api"><!-- --></a>
+
+
+	<h1 class="title topictitle1">ForumDecorator</h1>
+
+	
+	<div class="body"><p class="shortdesc">В этом приложении описаны функции, добавленные
+		ForumDecorator.groovy
+	</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" align="center" valign="top" width="33.33333333333333%" id="d2311e28">Функция</th>
+
+						<th class="entry" align="center" valign="top" width="66.66666666666666%" id="d2311e31">Описание</th>
+
+					</tr>
+
+				</thead>
+
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d2311e28 ">forum(String coverPageURL)</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d2311e31 ">
+							Конструктор.
+							<span class="keyword cmdname">coverPageURL</span>
+							- адрес логотипа ленты, - является опциональным аргументом.
+							Логотип используется в качестве обложки FB2-книги.
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d2311e28 ">void useTimeStamp(boolean askForTimeStampValue,boolean
+							confirmTimeStampValue)
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d2311e31 ">
+							Использование временной метки для определения начала периода.
+							<span class="keyword cmdname">askForTimeStampValue</span>
+							- выводить ли диалоговое окно с редактором даты начала периода.
+							Значение по-умолчанию:
+							<span class="keyword cmdname">false</span>
+							.
+							<span class="keyword cmdname">confirmTimeStampValue</span>
+							- выводить ли диалоговое окно для подтверждения обновленного
+							значения временной ветки.
+							Значение по-умолчанию:
+							<span class="keyword cmdname">false</span>
+							.
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d2311e28 ">void authorize{-&gt;...}
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d2311e31 ">
+							Фукнция задает алгоритм авторизации (детали см. в <a class="xref" href="authorization_decorator.html" title="В этом приложении описаны функции, добавленные Authorization.groovy. Эти функции позволяют залогиниться на сайт и разлогиниться с сайта.">Authorization</a>)
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d2311e28 ">String extractTitle{String content -&gt;...}
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d2311e31 ">
+							Функция задает алгоритм определения заголовка форума из содержимого первой страницы (<span class="keyword cmdname">content</span>).
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d2311e28 ">String extractNextPageUrl{String content, int pageNumber -&gt;...}
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d2311e31 ">
+							Функция задает алгоритм определения url следующей страницы форума из содержимого текущей страницы (<span class="keyword cmdname">content</span>)
+							и номера текущей страницы.
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+
+	</div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../appendices/appendices.html">Приложения</a></div>
+</div>
+</div>
+
+</body>
+</html>

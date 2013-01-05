@@ -1,0 +1,4 @@
+@echo off
+set SILENT=false
+cd "e:\Temp\bagheera\bin"
+bagheera.bat bash days=3

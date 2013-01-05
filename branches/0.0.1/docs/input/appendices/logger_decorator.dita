@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="appendix_logger_decorator" xml:lang="ru_RU">
+	<title>LoggerDecorator</title>
+	<shortdesc>В этом приложении описаны функции, добавленные
+		LoggerDecorator.groovy. Он добавляет несколько полезных методов для логирования. Все логи пишутся в файл <cmdname>logs/script.log</cmdname>.
+	</shortdesc>
+	<body>
+		<table>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Метод</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>void logError(String error, Throwable t = null)</entry>
+						<entry>Добавляет в лог сообщение об ошибке. Если в качестве аргумента передается сама ошибка, то в лог пишется и  stackTrace.
+						</entry>
+					</row>
+					<row>
+						<entry>void logWarning(String warning, Throwable t = null)</entry>
+						<entry>Добавляет в лог предупреждение. Если в качестве аргумента передается сама ошибка, то в лог пишется и  stackTrace.
+						</entry>
+					</row>
+					<row>
+						<entry>void logDebug(String messsage)</entry>
+						<entry>Добавляет в лог сообщение.
+						</entry>
+					</row>
+					<row>
+						<entry>void log(String messsage)</entry>
+						<entry>То же, что и logDebug.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</body>
+
+</topic>

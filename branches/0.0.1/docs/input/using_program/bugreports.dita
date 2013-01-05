@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="bugreports" xml:lang="ru_RU">
+	<title>Ошибки в программе</title>
+	<conbody>
+		<p>
+		Как и в любой другой программе, в программе &bagheera_title; наверняка есть ошибки.
+		Большая часть ошибок связана с конкретными скриптами обработки интернет-ресурсов. Это связано с тем, 
+		что скрипты "заточены" под определенный формат HTML страниц (в основном, это URL изображений),  а он часто меняется. Так что, не
+		удивляйтесь, что какой-то скрипт со временем перестанет работать.    
+		Если Вы нашли такую ошибку, пожалуйста создайте <i>bug</i> на страничке <xref href="http://code.google.com/p/bagheera/issues/list" scope="external"/>. В это случае вероятность, что 
+		я исправлю эту ошибку, существенно возрастает.			
+		</p>
+	</conbody>
+</concept>

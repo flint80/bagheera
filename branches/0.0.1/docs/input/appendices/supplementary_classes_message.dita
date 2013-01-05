@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="supplementary_classes_script_callback" xml:lang="ru_RU">
+	<title>Message</title>
+	<shortdesc>
+		Этот класс описывает сообщение, которое показывается пользователю.
+	</shortdesc>
+	<body>
+		<table>
+			<title>com.flinty.book.bagheera.common.Message</title>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Поле</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>MessageType type</entry>
+						<entry>
+							тип сообщения
+						</entry>
+					</row>
+					<row>
+						<entry>String message</entry>
+						<entry>
+							текст сообщения
+						</entry>
+					</row>
+
+				</tbody>
+			</tgroup>
+		</table>
+		<table>
+			<title>com.flinty.book.bagheera.common.MessageType</title>
+			<desc>Перечисление состоящее из элементов</desc>
+			<tgroup cols="2">
+				<colspec colwidth="1" />
+				<colspec colwidth="2" />
+				<thead>
+					<row>
+						<entry align="center">Элемент</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>MESSAGE</entry>
+						<entry>
+							просто сообщение
+						</entry>
+					</row>
+					<row>
+						<entry>WARNING</entry>
+						<entry>
+							нефатальная ошибка
+						</entry>
+					</row>
+					<row>
+						<entry>ERROR</entry>
+						<entry>
+							фатальная ошибка
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+	</body>
+</topic>

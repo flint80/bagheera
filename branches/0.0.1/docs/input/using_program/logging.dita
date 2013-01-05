@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="logging" xml:lang="ru_RU">
+	<title>Логирование</title>
+	<conbody>
+		<p>
+			Естественно, в любом новом скрипте будут ошибки. Для отладки новых
+			скриптов я в основном пользуюсь логированием.
+			В контексте скрипта Вам становятся доступными ряд утилитных функций
+			для логирования (см.
+			<xref href="../appendices/logger_decorator.dita" />
+			).
+			В разделе
+			<xref href="forum_script.dita" />
+			при разборе скрипта обработки
+			<i>ForumHouse</i>
+			Вы, наверное,
+			заметили закоментированные строки
+			<cmdname>//log ...</cmdname>
+			. При написании этих скриптов эти строки были раскоментированы,
+			в результате чего в файле
+			<cmdname>log/scripts.log</cmdname>
+			писались достаточно подробные логи работы скрипта, по которым я искал
+			ошибки.
+		</p>
+		<p>
+			В этой папке есть еще и файл
+			<cmdname>bagheera.log</cmdname>
+			, в который пишутся системные логи, а также ошибки, возникающие при
+			работе скрипта.
+		</p>
+		<p>
+			Логирование конфигурируется в файле <cmdname>config/log4j.properties</cmdname>
+		</p>
+	</conbody>
+</concept>

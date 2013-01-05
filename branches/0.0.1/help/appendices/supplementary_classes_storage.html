@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru_ru" xml:lang="ru_ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Storage"/>
+<meta name="abstract" content="Этот класс предоставляет функции для сохранения данных, поученных в результате выполнения скрипта"/>
+<meta name="description" content="Этот класс предоставляет функции для сохранения данных, поученных в результате выполнения скрипта"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/supplementary_classes.html"/>
+<meta name="DC.Creator" content="Авраменко Владимир"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="supplementary_classes_storage"/>
+<meta name="DC.Language" content="ru_RU"/>
+<link rel="stylesheet" type="text/css" href="../commonltr.css"/>
+<title>Storage</title>
+</head>
+<body id="supplementary_classes_storage"><a name="supplementary_classes_storage"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Storage</h1>
+
+	
+	<div class="body"><p class="shortdesc">
+		Этот класс предоставляет функции для сохранения данных,
+		поученных в результате выполнения скрипта
+	</p>
+
+		
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. com.flinty.book.bagheera.model.IScriptDataStorage</span></caption>
+				
+				
+				<thead class="thead" align="left">
+					<tr class="row">
+						<th class="entry" align="center" valign="top" width="33.33333333333333%" id="d7401e31">Метод</th>
+
+						<th class="entry" align="center" valign="top" width="66.66666666666666%" id="d7401e34">Описание</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d7401e31 ">Map getMetadata(String scriptFileName)</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d7401e34 ">
+							считывает метаданные указанного скрипта(обычно используется
+							для хранения введенных пользователем значений: дата начала
+							периода и т.д.)
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d7401e31 ">void saveMetadata(String scriptFileName, Map metadata)
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d7401e34 ">
+							сохраняет метаданые указанного скрипта
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d7401e31 ">Serializable getData(String scriptFileName)</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d7401e34 ">
+							считывает данные указанного скрипта(обычно используется для
+							хранения истории загруженных новостей)
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d7401e31 ">void saveData(String scriptFileName, Serializable data)
+						</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d7401e34 ">
+							сохраняет данные указанного скрипта
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="33.33333333333333%" headers="d7401e31 ">File saveTempData(String fileName, byte[] content)</td>
+
+						<td class="entry" valign="top" width="66.66666666666666%" headers="d7401e34 ">
+							сохраняет временные данные (обычно используется для
+							кеширования загруженных attachements); после отработки скрипта
+							эти данные стираются
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+</div>
+
+
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../appendices/supplementary_classes.html" title="В этом разделе описаны вспомогательные классы, которые активно используются при написании скриптов">Вспомогательные классы</a></div>
+</div>
+</div>
+
+</body>
+</html>

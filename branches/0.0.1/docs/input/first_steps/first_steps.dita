@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "../../dtd/topic.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<topic id="first_steps" xml:lang="ru_RU">
+	<title>Первые шаги</title>
+	<shortdesc>Программа &bagheera_title;
+		предназначена для создания FB2-книг из различных WEB-источников
+		информации, таких как RSS-ленты и форумы. Прочитав эту часть, Вы уже
+		сможете сгенерировать простые FB2-книжки из RSS-лент.
+	</shortdesc>
+	<body>
+		<p>
+			В этой части описаны:
+		</p>
+		<ul>
+			<li>назначение программы назначение программы</li>
+			<li>установка программы </li>
+			<li>процесс создания FB2-книги из RSS-ленты сайта bash.org</li>
+			<li>особенности запуска программы из командной строки</li>
+		</ul>
+	</body>
+</topic>
