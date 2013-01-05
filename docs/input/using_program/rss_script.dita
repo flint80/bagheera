@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="rss_script" xml:lang="ru_RU">
+	<title>Обработка RSS-ленты</title>
+	<conbody>
+		<fig>
+			<title>Логика обработки RSS-ленты</title>
+			<p>
+				<image href="figures/rss_logic.png" width="300"></image>
+			</p>
+		</fig>
+		<p>
+			В этом разделе описана логика обработки RSS-ленты, шаблон которой
+			задается декоратором
+			<cmdname>RssDecorator.groovy</cmdname>
+			. Более детальную информацию по методам декоратора
+			можно посмотреть в
+			разделе
+			<xref href="../appendices/rss_api.dita" />
+			, либо анализируя код
+			<cmdname>RssDecorator.groovy</cmdname>
+			. Обработка RSS-ленты состоит из следующих этапов:
+			<ol>
+				<li>
+					<b>Инициализация.</b>
+					Декоратор инициализируется двумя простыми параметрами:
+					адрес
+					RSS-ленты и адрес логотипа, который используется как обложка книги.
+					Второй параметр является опциональным.
+				</li>
+				<li>
+					<b>Определение начала периода.</b>
+					Это момент времени, начиная с которого новости попадают в
+					FB2-книгу. Тут есть две стратегии:
+					<ol>
+						<li>
+							Использование временной метки. В этом случае включаются
+							новости с момента последнего создания книги из этой ленты и до
+							текущего момента.
+						</li>
+						<li>Получение данных за определеный срок. Например, получить
+							данные за 2 недели и до текущего момента.
+						</li>
+					</ol>
+					<p>
+						В первом случае нужно использовать функцию
+						<cmdname>useTimeStamp(boolean askForTimeStampValue,boolean
+							confirmTimeStampValue)
+						</cmdname>
+						.
+						Первый аргумент определяет, нужно ли уточнять у пользователя дату
+						начала
+						периода. Если флаг выставлен в
+						<cmdname>true</cmdname>
+						, то перед началом создания книги выводится окно с возможностью
+						редактирования даты начала.
+						Второй аргумент, определяет нужно ли
+						запрашивать у пользователя подтверждение оь обновлении
+						временной
+						ветки. Оба аргумента опциональны. При их отсутсвии считается, что
+						оба
+						они равны
+						<cmdname>false</cmdname>
+						.
+					</p>
+					<p>
+						Во втором случае нужно использовать функцию
+						<cmdname>usePeriod(boolean askForPeriodValue, int
+							defaultRetrievePeriod)
+						</cmdname>
+						.
+						Первый аргумент определяет, нужно ли уточнять у пользователя
+						период, или
+						использовать последнее введенное значение
+						автоматически. Если флаг
+						выставлен в
+						<cmdname>true</cmdname>
+						, то перед началом создания книги выводится окно с возможностью
+						редактирования продолжительности периода.
+						Второй аргумент,
+						продолительность периода по-умолчанию (т.е если первый аргумент
+						равен false). Оба аргумента опциональны. При их отсутсвии
+						считается, что
+						<cmdname>askForPeriodValue = false</cmdname>
+						, а
+						<cmdname>defaultRetrievePeriod = 14</cmdname>
+						.
+					</p>
+					При отсутствии этих функций используется поведение по-умолчанию:
+					<cmdname>useTimeStamp(false, false)</cmdname>
+					.
+				</li>
+				<li>
+					Получение контента RSS-ленты. Загружается контент, расположенный
+					по
+					указанному при инициализации URL.
+				</li>
+				<li>
+					Объединение с архивными данными. Если скрипт запускается не в
+					первый раз, то
+					от обработанный в предудущий раз контент, сохраняется
+					на диск.
+					Нужно это вот для чего. Многие источники RSS-лент хранят
+					новости
+					лишь за последние пару дней, а, зачастую, хочется получить
+					книжку
+					за, например, последнюю неделю.
+					Если скрипт запускается
+					регулярно, то на диске сохраняется контент за
+					необходимый период, и
+					при очередном запуске скрипта сохраненные
+					новости подмешиваются к
+					новым. Результирующий список фильтруется
+					согласно определенному на
+					предыдущиз шагах началу периода.
+				</li>
+				<li>
+					Пост-обработка свежих новостей. Если RSS-лента содержит не полную
+					новость, а лишь ее анонс,
+					то необходимо заменить анонс полной
+					версией статьи. Это надо делать в
+					методе
+					<cmdname>updateItem</cmdname>
+					, который в качестве аргумента получает
+					<cmdname>HTMLSection</cmdname>
+					.
+					Мы рассмотрим пример применения этого метода ниже при описании
+					скрипта обработки ленты Компьютерры.
+				</li>
+				<li>Обновление архивных данных. Как уже упоминалось на шаге 4, после
+					получения
+					очередной порции RSS-новостей, обновляется локальный кеш
+					новостей.
+				</li>
+				<li>Обновление архивных данных. Как уже упоминалось на шаге 4, после
+					получения
+					очередной порции RSS-новостей, обновляется локальный кеш
+					новостей.
+				</li>
+				<li>Создание FB2. На этом шаге генерируется контент FB2-книги.
+				</li>
+				<li>
+					Сохранение книги в файл. На этом шаге контент сохраняется в файл на
+					локальном диске в директории
+					<cmdname>output</cmdname>
+					.
+					При автоматической генерации имя файла составляется из названия
+					RSS-ленты и периода, за который запрошены новости.
+					Вы можете
+					изменить алгоритм генерации имени файла, используя метод
+					<cmdname>buildFileName</cmdname>
+					, в который в
+					качестве аргумента передается Контекст выполнения
+					скрипта.
+				</li>
+				<li>
+					Обновление временной метки. Если конфигурируете скрипт функцией
+					<cmdname>useTimeStamp</cmdname>
+					с параметром
+					<cmdname>confirmTimeStampValue = true</cmdname>
+					(см шаг 2),
+					то перед обновлением временной метки у пользователя
+					запрашивается
+					подтверждение.
+				</li>
+			</ol>
+		</p>
+		<p>
+			Рассмотрим в качетсве примера скрипт обработки RSS-ленты Компютерры:
+			<codeblock>
+<![CDATA[		
+//@ description Computerra
+showMessage 'готовим книжку - ждите...'
+rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
+	useTimeStamp(true,false)
+	updateItem{
+		String content = loadAsString it.relatedURL
+		if(content){
+			String subContent = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
+			if(subContent){
+				content = subContent
+			} else{
+				log "subcontent is null, content = $content"
+				it.htmlContent = ' '
+				return
+			}
+			content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
+			it.htmlContent = content
+			log 'modified content of ' + it.relatedURL + ' is ' + content
+		}
+	}
+}
+showMessage 'генерация книжки завершена'
+		]]></codeblock>
+		</p>
+		<p>
+			Первая строка задает описание скрипта (то как он будет отображен в списке доступных скриптов).
+		</p>
+		<p>
+			Вторая строка выводит на интерфейс сообщение "готовим книжку -
+			ждите...". Функция
+			<cmdname>showMessage</cmdname>
+			- это результат работы
+			декоратора
+			<cmdname>CommunicationsDecorator.groovy</cmdname>
+			. Полный список функций, добавляемых этим декоратором описан в <xref href="../appendices/communications_decorator.dita"/>.
+		</p>
+		<p>
+			Третья строка запускает генератор FB2-книги из RSS-ленты. Генератор
+			инициализируется адресом RSS-ленты (
+			<xref href="http://feeds.feedburner.com/ct_news?format=xml"
+				scope="external" format="html" />
+			) и
+			адресом логотипа
+			<xref href="http://www.computerra.ru/new/logo2.gif" scope="external" />
+		</p>
+		<p>
+			Четвертая строка конфигурирует генератор так, чтобы он использовал
+			временную
+			ветку. При этом, вначале будет
+			выводится диалоговое окно с
+			подтверждением даты начала периода.
+		</p>
+		<p>Строки 5-20 определяют алгоритм постобработки сообщений.
+			Копмпьютерра предоставляет лишь анонс новости,
+			а нам нужна полная
+			версия статьи.
+		</p>
+		<p>
+			В строке 6 загружается контент статьи, при этом используется функция
+			<cmdname>loadAsString</cmdname>
+			, которая
+			создается декоратором
+			<xref href="../appendices/communications_decorator.dita"/>
+		</p>
+		<p>
+			В строках
+			<codeblock>
+<![CDATA[		
+content = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
+content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
+		]]></codeblock>
+			из текста статьи вычленяется содержательная часть(которая находится
+			либо внутри тега
+			<cmdname><![CDATA[<div id="content">]]></cmdname>
+			, либо внутри блока
+			от
+			<cmdname><![CDATA[<!-- start -->]]></cmdname>
+			до
+			<cmdname><![CDATA[<iframe.+?/>]]></cmdname>
+			), а затем из контента удаляются лишние куски
+			с кодом JavaScript и
+			IFrame.
+		</p>
+		<p>
+			Функции
+			<cmdname>findFirst</cmdname>
+			и
+			<cmdname>deleteAll</cmdname>
+			появляются в результате работы декоратора
+			<cmdname>StringUtilsDecorator.groovy</cmdname>
+			(см <xref href="../appendices/string_utils_decorator.dita" />). Функции работы со строками активно используют регулярные
+			выражения Java (см
+			<xref scope="external"
+				href="http://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html" />
+			или
+			<xref scope="external"
+				href="http://docs.oracle.com/javase/tutorial/essential/regex/intro.html" />
+			).
+		</p>
+		<p>
+			В строке
+			<codeblock>
+<![CDATA[		
+it.htmlContent = content
+		]]></codeblock>
+			обновляется контент новости.
+		</p>
+		<p>
+			И, наконец, в строке
+			<codeblock>
+<![CDATA[		
+log 'modified content of ' + it.relatedURL + ' is ' + content
+		]]></codeblock>
+			для целей отладки обноленный контент логируется в файл
+			<cmdname>log/script.log</cmdname>
+			. Функция
+			<cmdname>log</cmdname>
+			добавлена декоратором <xref href="../appendices/logger_decorator.dita"/>
+			<cmdname>LoggerDecorator.groovy</cmdname>
+			.
+		</p>
+		<p>
+			Ну вот и все. Теперь Вы научились обрабатывать любые RSS-ленты, в том
+			числе, и с анонсами статей. Для справок пользуйте информацию из
+			<xref href="../appendices/appendices.dita">Приложений</xref>
+		</p>
+	</conbody>
+</concept>

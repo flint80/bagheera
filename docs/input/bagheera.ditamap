@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN"
+ "../dtd/bookmap/dtd/bookmap.dtd">
+<!-- (c) Copyright IBM Corp. 2004, 2007 All Rights Reserved. -->
+<bookmap id="taskbook" xml:lang="ru_RU">
+	<booktitle>
+		<booklibrary>Техническая документация</booklibrary>
+		<mainbooktitle>Багира - руководство пользователя</mainbooktitle>
+	</booktitle>
+	<bookmeta>
+		<author>Авраменко Владимир</author>
+		<bookrights>
+			<copyrfirst>
+				<year>2012</year>
+			</copyrfirst>
+			<copyrlast>
+				<year>2012</year>
+			</copyrlast>
+			<bookowner>
+				<organization>Open source</organization>
+			</bookowner>
+		</bookrights>
+	</bookmeta>
+	<frontmatter>
+		<booklists>
+			<toc />
+		</booklists>
+	</frontmatter>
+	<chapter href="first_steps/first_steps.dita">
+		<topicref href="first_steps/introduction.dita"></topicref>
+		<topicref href="first_steps/installation.dita"></topicref>
+		<topicref href="first_steps/first_script.dita"></topicref>
+		<topicref href="first_steps/cli_mode.dita"></topicref>
+		<topicref href="first_steps/next_steps.dita"></topicref>
+	</chapter>
+	<chapter href="using_program/using_program.dita">
+		<topicref href="using_program/program_structure.dita"></topicref>
+		<topicref href="using_program/rss_script.dita"></topicref>
+		<topicref href="using_program/forum_script.dita"></topicref>
+		<topicref href="using_program/html_script.dita"></topicref>
+		<topicref href="using_program/logging_and_debugging.dita">
+			<topicref href = "using_program/logging.dita"/>
+			<topicref href = "using_program/debugging.dita"/>
+		</topicref>
+		<topicref href="using_program/bugreports.dita"></topicref>
+	</chapter>
+	<chapter href="development/developing_program.dita">
+		<topicref href="development/source_code.dita"></topicref>
+		<topicref href="development/ide.dita"></topicref>
+	</chapter>
+	<chapter href="appendices/appendices.dita">
+		<topicref href="appendices/context.dita"></topicref>
+		<topicref href="appendices/rss_api.dita"></topicref>
+		<topicref href="appendices/forum_api.dita"></topicref>
+		<topicref href="appendices/html_api.dita"></topicref>
+		<topicref href="appendices/conversion_config_decorator.dita"></topicref>
+		<topicref href="appendices/string_utils_decorator.dita"></topicref>
+		<topicref href="appendices/communications_decorator.dita"></topicref>
+		<topicref href="appendices/data_storage_decorator.dita"></topicref>
+		<topicref href="appendices/http_decorator.dita"></topicref>
+		<topicref href="appendices/logger_decorator.dita"></topicref>
+		<topicref href="appendices/authorization_decorator.dita"></topicref>
+		<topicref href="appendices/supplementary_classes.dita">
+			<topicref href="appendices/supplementary_classes_message.dita" />
+			<topicref href="appendices/supplementary_classes_html_book.dita" />
+			<topicref href="appendices/supplementary_classes_script_callback.dita" />
+			<topicref href="appendices/supplementary_classes_downloader.dita" />
+			<topicref href="appendices/supplementary_classes_storage.dita" />
+		</topicref>
+		<topicref href="appendices/appendix_literature.dita"></topicref>
+	</chapter>
+	
+
+</bookmap>

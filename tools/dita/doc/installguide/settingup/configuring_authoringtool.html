@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="task" name="DC.Type">
+<meta name="DC.Title" content="Configuring your authoring tool to use the Toolkit catalog">
+<meta content="setting up a working environment, authoring tool, editor (authoring tool), catalog, configuring to use the catalog, catalog, configuring your authoring tool to use" name="DC.subject">
+<meta content="setting up a working environment, authoring tool, editor (authoring tool), catalog, configuring to use the catalog, catalog, configuring your authoring tool to use" name="keywords">
+<meta name="prodname" content="DITA Open Toolkit">
+<meta content="1.4.1" name="version">
+<meta content="Richard Johnson" name="DC.Creator">
+<meta content="Anna van Raaphorst" name="DC.Contributor">
+<meta content="OASIS (Organization for the Advancement of Structured Information Standards)" name="DC.Publisher">
+<meta name="copyright" content="VR Communications, Inc. 2007" type="primary">
+<meta name="DC.Rights.Owner" content="VR Communications, Inc. 2007" type="primary">
+<meta content="2006-06-06" name="DC.Date.Created">
+<meta content="2007-04-15" name="DC.Date.Modified">
+<meta content="XHTML" name="DC.Format">
+<meta content="configuring_authoringtool" name="DC.Identifier">
+<link href="../../../commonltr.css" type="text/css" rel="stylesheet">
+<title>Configuring your authoring tool to use the Toolkit catalog</title>
+</head>
+<body id="configuring_authoringtool"><a name="configuring_authoringtool"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Configuring your authoring tool to use the Toolkit catalog</h1>
+
+	
+	<div class="body taskbody">
+		<div class="section context">
+			<p class="p">"DITA-aware" authoring tools check  source files for well-formedness and validate them against DTDs. 
+			However, you may need to configure your editor to enable it to do these tasks correctly. 
+			Some editors have a built-in copy of the DTDs; others require that you provide a catalog that can be used to look up DTD definitions specified in your source file DOCTYPE declaration.
+			Some versions of Altova XMLSpy may require a catalog.
+			</p>
+
+			<p class="p">
+			XMLSpy performs a catalog lookup on the PUBLIC identifier in the DOCTYPE declaration in DITA source files. 
+			If it does not find a match in its catalog, XMLSpy tries to open the disk file specified as the last URI in the DOCTYPE declaration. 
+			If the URI does not point to the relevant DTD, XMLSpy is unable to validate the DITA source file.
+			</p>
+
+			<p class="p"> 
+		By modifying XMLSpy's <span class="ph filepath">CustomCatalog.xml</span> file, you can move your source files to a new location without having to worry about incorrect URIs in your DITA source files.
+		</p>
+
+			<p class="p">Follow these steps to modify <span class="ph filepath">C:\Program Files\Altova\XMLSpy2006/CustomCatalog.xml</span>.</p>
+
+		</div>
+
+		<ol class="ol steps"><li class="li step">
+				<span class="ph cmd">Save the <span class="ph filepath">CustomCatalog.xml</span> stub file under a new name (for example, <span class="ph filepath">CustomCatalogOLD.xml</span>).</span>
+			</li>
+<li class="li step">
+				<span class="ph cmd">Open the <span class="ph filepath">CustomCatalog.xml</span> stub file.</span>
+				 
+					<pre class="pre codeblock">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- edited with XML Spy v5 beta 1 U (http://www.xmlspy.com) by Vladislav Gavrielov (Altova) --&gt;
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog
+Catalog.xsd"/&gt;
+				</pre>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">Keeping the <span class="ph filepath">CustomCatalog.xml</span> stub file open, also open <span class="ph filepath">catalog-dita.xml</span> in the Toolkit home directory.</span>
+				 
+					<pre class="pre codeblock">
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public"&gt;
+
+&lt;group xml:base="dtd"&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Concept//EN" uri="dita132/concept.dtd"&gt;&lt;/public&gt;
+&lt;public publicId="-//IBM//ELEMENTS DITA Concept//EN" uri="dita132/concept.mod"&gt;&lt;/public&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Composite//EN" uri="dita132/ditabase.dtd"&gt;&lt;/public&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Reference//EN" uri="dita132/reference.dtd"&gt;&lt;/public&gt;
+&lt;public publicId="-//IBM//ELEMENTS DITA Reference//EN" uri="dita132/reference.mod"&gt;&lt;/public&gt; 
+. . .
+				</pre>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">In <span class="ph filepath">catalog-dita.xml</span>, change the relative path names to absolute path names.</span>
+				 
+					<pre class="pre codeblock">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   \ 
+xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog
+Catalog.xsd"&gt;
+
+&lt;!-- XMLSPY custom XML catalog for DITA DTDs --&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Concept//EN" uri="C:/ditaot/dtd/dita132/concept.dtd"&gt;&lt;/public&gt;
+&lt;public publicId="-//IBM//ELEMENTS DITA Concept//EN" uri="C:/ditaot/dtd/dita132/concept.mod"&gt;&lt;/public&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Composite//EN" uri="C:/ditaot/dtd/dita132/ditabase.dtd"&gt;&lt;/public&gt;
+
+&lt;public publicId="-//IBM//DTD DITA Reference//EN" uri="C:/ditaot/dtd/dita132/reference.dtd"&gt;&lt;/public&gt;
+&lt;public publicId="-//IBM//ELEMENTS DITA Reference//EN" uri="C:/ditaot/dtd/dita132/reference.mod"&gt;&lt;/public&gt;
+. . .
+				</pre>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">Modify the <span class="ph filepath">CustomCatalog.xml</span> file and paste the new information into it.</span>
+				 
+					<pre class="pre codeblock">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- edited with XML Spy v5 beta 1 U (http://www.xmlspy.com) by Vladislav Gavrielov (Altova) --&gt;
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog
+[Modify below]
+Catalog.xsd"&gt;
+
+[Paste here]
+
+&lt;/catalog&gt;
+				</pre>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">Save the <span class="ph filepath">CustomCatalog.xml</span> file.</span>
+			</li>
+</ol>
+
+		<div class="section result">
+		The following is a complete sample <span class="ph filepath">CustomCatalog.xml</span> created using this procedure.
+		<pre class="pre codeblock">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- edited with XML Spy v5 beta 1 U (http://www.xmlspy.com) by Vladislav Gavrielov (Altova) --&gt;
+&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog
+Catalog.xsd"&gt;
+
+ &lt;!-- XMLSPY custom XML catalog for DITA 1.1 DTDs --&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Concept//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/concept.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Concept//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/concept.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Composite//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/ditabase.dtd"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/reference.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/reference.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Task//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/task.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Task//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/task.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Topic//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/topic.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Topic//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/topic.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Topic Class//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/topic_class.ent"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Topic Definitions//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/topic_defn.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Map//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/map.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Map//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/map.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Map Group Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/mapgroup.ent"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Map Group Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/mapgroup.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA Highlight Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/highlight-domain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Highlight Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/highlight-domain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA Programming Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/programming-domain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Programming Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/programming-domain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA Software Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/software-domain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Software Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/software-domain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA User Interface Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/ui-domain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA User Interface Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/ui-domain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA Utilities Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/utilities-domain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ENTITIES DITA Utilities Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/utilities-domain.ent"&gt;&lt;/public&gt;
+
+
+
+  &lt;public publicId="-//IBM//ELEMENTS DITA Metadata//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/meta_xml.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA CALS Tables//EN" uri="C:/DITA-OT1.3.1-full/dtd/dita132/tbl_xml.mod"&gt;&lt;/public&gt;
+          
+  &lt;public publicId="-//OASIS//DTD DITA Concept//EN" uri="C:/DITA-OT1.3.1-full/dtd/concept.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Concept//EN" uri="C:/DITA-OT1.3.1-full/dtd/concept.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//DTD DITA Composite//EN" uri="C:/DITA-OT1.3.1-full/dtd/ditabase.dtd"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//DTD DITA Glossary//EN" uri="C:/DITA-OT1.3.1-full/dtd/glossary.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Glossary//EN" uri="C:/DITA-OT1.3.1-full/dtd/glossary.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//DTD DITA Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/reference.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/reference.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//DTD DITA Task//EN" uri="C:/DITA-OT1.3.1-full/dtd/task.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Task//EN" uri="C:/DITA-OT1.3.1-full/dtd/task.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//DTD DITA Topic//EN" uri="C:/DITA-OT1.3.1-full/dtd/topic.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Topic//EN" uri="C:/DITA-OT1.3.1-full/dtd/topic.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Topic Class//EN" uri="C:/DITA-OT1.3.1-full/dtd/topicAttr.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Topic Definitions//EN" uri="C:/DITA-OT1.3.1-full/dtd/topicDefn.ent"&gt;&lt;/public&gt;
+
+
+
+  &lt;public publicId="-//OASIS//DTD DITA Map//EN" uri="C:/DITA-OT1.3.1-full/dtd/map.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Map//EN" uri="C:/DITA-OT1.3.1-full/dtd/map.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Map Group Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/mapGroup.ent"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Map Group Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/mapGroup.mod"&gt;&lt;/public&gt;
+          
+  &lt;public publicId="-//OASIS//DTD DITA BookMap//EN" uri="C:/DITA-OT1.3.1-full/dtd/bookmap.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA BookMap//EN" uri="C:/DITA-OT1.3.1-full/dtd/bookmap.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Highlight Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/highlightDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Highlight Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/highlightDomain.ent"&gt;&lt;/public&gt;
+          
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Indexing Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/indexingDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Indexing Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/indexingDomain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Programming Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/programmingDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Programming Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/programmingDomain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Software Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/softwareDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Software Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/softwareDomain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA User Interface Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/uiDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA User Interface Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/uiDomain.ent"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Utilities Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/utilitiesDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Utilities Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/utilitiesDomain.ent"&gt;&lt;/public&gt;
+          
+  &lt;public publicId="-//OASIS//ELEMENTS DITA XNAL Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/xnalDomain.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA XNAL Domain//EN" uri="C:/DITA-OT1.3.1-full/dtd/xnalDomain.ent"&gt;&lt;/public&gt;
+  
+
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Common Elements//EN" uri="C:/DITA-OT1.3.1-full/dtd/commonElements.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ENTITIES DITA Common Elements//EN" uri="C:/DITA-OT1.3.1-full/dtd/commonElements.ent"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Metadata//EN" uri="C:/DITA-OT1.3.1-full/dtd/metaDecl.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA CALS Tables//EN" uri="C:/DITA-OT1.3.1-full/dtd/tblDecl.mod"&gt;&lt;/public&gt;
+  &lt;public publicId="-//OASIS//ELEMENTS DITA Exchange Table Model//EN" uri="C:/DITA-OT1.3.1-full/dtd/tblDecl.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Element Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/elementref/elementref_shell.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Element Reference//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/elementref/elementref.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA FAQ//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/faq/faq_shell.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA FAQ//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/faq/faq.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA eNote//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/enote/enote_shell.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA eNote//EN" uri="C:/DITA-OT1.3.1-full/dtd/demo/enote/enote.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA BookMap//EN" uri="C:/DITA-OT1.3.1-full/demo/book/bookmap.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA BookMap//EN" uri="C:/DITA-OT1.3.1-full/demo/book/bookmap.mod"&gt;&lt;/public&gt;
+
+  &lt;public publicId="-//IBM//DTD DITA Book Information//EN" uri="C:/DITA-OT1.3.1-full/demo/book/bkinfo.dtd"&gt;&lt;/public&gt;
+  &lt;public publicId="-//IBM//ELEMENTS DITA Book Information//EN" uri="C:/DITA-OT1.3.1-full/demo/book/bkinfo.mod"&gt;&lt;/public&gt;
+
+
+&lt;/catalog&gt;
+
+        </pre>
+
+		</div>
+
+		<div class="section postreq">For more detailed information about creating an XMLSpy catalog for DITA DTDs, see <a class="xref" href="http://www.altova.com/manual2006/xmlspy/spyprofessional/index.html?validate.htm" target="_blank">http://www.altova.com/manual2006/xmlspy/spyprofessional/index.html?validate.htm</a>. 
+		</div>
+
+	</div>
+
+
+</body>
+</html>

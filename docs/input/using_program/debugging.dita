@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="debugging" xml:lang="ru_RU">
+	<title>Отладка</title>
+	<conbody>
+		<p>
+			Еще один способ отладки скрипта - это использование команды
+			<cmdname>debug</cmdname>
+			.
+		</p>
+		<p>
+			Рассмотрим немного модифицированный скрипт обработки сайта
+			Копмьютерры
+			<codeblock>
+<![CDATA[
+//@ description Computerra (Debug)
+showMessage 'готовим книжку - ждите...'
+rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
+	useTimeStamp(true,false)
+	updateItem{
+		String content = loadAsString it.relatedURL
+		if(content){
+			String subContent = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
+			if(subContent){
+				content = subContent
+			} else{
+				log "subcontent is null, content = $content"
+				it.htmlContent = ' '
+				return
+			}
+			content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
+			it.htmlContent = content
+			binding.item = it
+			debug()
+		}
+	}
+}
+showMessage 'генерация книжки завершена'	
+]]>	
+	</codeblock>
+		</p>
+		<p>
+			Он отличается от скрипта, рассмотренного в
+			<xref href="rss_script.dita" />
+			строками
+			<codeblock>
+binding.item = it
+debug()
+</codeblock>
+		</p>
+		<p>
+			В этой строке в контекст скрипта кладется переменная
+			<cmdname>item</cmdname>
+			, которая является экземпляром класса
+			<xref href="../appendices/supplementary_classes_html_book.dita">HTMLSection</xref>
+			и представляет содержимое текущего поста.
+		</p>
+		<p>
+			В следующей строке при вызове функции
+			<cmdname>debug()</cmdname>
+			выполнение скрипта приостанавливается и окно приобретаетс примерно
+			следующий следующий вид:
+		</p>
+		<p>
+			<fig>
+				<title>Окно отладки</title>
+				<p>
+					<image href="figures/debug.png" width="400"></image>
+				</p>
+			</fig>
+		</p>
+		<p>
+			Если в верхнем текстовом поле ввести
+			<cmdname>item</cmdname>
+			и нажать
+			<i>Выполнить</i>
+			, то в нижнем текстовом поле отобразится результат: содержимое
+			переменной
+			<cmdname>binding.item</cmdname>
+			. А если выполнить строку
+			<cmdname>item.sectionTitle='Modified title'</cmdname>
+			,
+			то Вы измените значение
+			<cmdname>sectionTitle</cmdname>
+			текущего сообщения. Если нажать
+			<i>Продолжить</i>
+			, то
+			Вы выйдете из режима отладки.
+		</p>
+		<p>
+			На самом деле, это не полноценная отладка. Просто поток, выполняющий
+			текущий скрипт приостанавливается,
+			и запускается новый поток, который выполняет скрипт, который Вы
+			вводите в верхнем поле. При этом, для обоих скриптов
+			используется один и тот же контекст (
+			<cmdname>binding</cmdname>
+			), через который можно получить доступ к переменным исходного
+			скрипта.
+		</p>
+	</conbody>
+</concept>

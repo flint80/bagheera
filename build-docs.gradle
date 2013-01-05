@@ -1,0 +1,35 @@
+ant.properties['is64bit'] = 'false'
+
+task setupDita()<<{
+	ant.properties['dita.dir'] = file('tools/dita').getAbsolutePath()
+	ant.properties['dita.temp.dir'] = file('temp/dita/').getAbsolutePath()
+	ant.properties['clean.temp'] = 'yes'
+	ant.importBuild 'tools/dita/integrator.xml'
+	ant.importBuild 'tools/dita/build.xml'
+	ant.properties['args.input'] = file('docs/input/bagheera.ditamap').getAbsolutePath()
+	file('tools/dita/demo/fo/fop/conf/fop.xconf').setText(file('tools/dita/demo/fo/fop/conf/fop.xconf.template').getText().replace('{font_dir}',file('tools/dita/demo/fo/fop/fonts').getAbsolutePath()))
+	addLibs(file('tools/dita/lib'))
+}
+
+addLibs = {File f->
+	f.listFiles().each{File f2->
+		if(f2.isDirectory()){
+			addLibs f2
+		}
+		if(f2.isFile() && f2.getAbsolutePath().endsWith('.jar')){
+			org.apache.tools.ant.Project.class.classLoader.addURL(f2.toURI().toURL())
+		}
+	}
+	org.apache.tools.ant.Project.class.classLoader.addURL(f.toURI().toURL())
+}
+task buildHtml(dependsOn: setupDita)<<{
+	ant.properties['output.dir'] = file('help').getAbsolutePath()
+	ant.properties['transtype'] = 'xhtml'
+	tasks.init.execute()
+}
+task buildPdf(dependsOn: setupDita)<<{
+	println ('current directory is ' + new File('.').getAbsolutePath())
+	ant.properties['output.dir'] = file('docs/output/pdf').getAbsolutePath()
+	ant.properties['transtype'] = 'pdf2'
+	tasks.init.execute()
+}

@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="program_structure" xml:lang="ru_RU">
+	<title>Структура программы</title>
+	<conbody>
+		<fig>
+			<title>Структура программы</title>
+			<p>
+				<image href="figures/program_structure.png"></image>
+			</p>
+		</fig>
+		<p>
+			Структуру программы &bagheera_title;
+			условно можно разделить на две части:
+			<ul>
+				<li>
+					Ядро программы. Это набор файлов, скомпилированных в библиотеку.
+					Эту
+					часть программы пользователь менять не может. Ядро - это, по
+					сути,
+					графический интерфейс для взаимодействия с пользователем и
+					набор библиотечных
+					функций,
+					позволяющих получать данные из сети и
+					создавать FB2 книги.
+				</li>
+				<li>Скрипты для работы с данными. Это набор groovy скриптов, которые
+					и задают логику создания книги из того, или иного источника:
+					RSS-ленты, или форума. Эту файлы можно редактировать. Обработка
+					новой RSS-ленты или форума, сводится к добавлению очередного
+					скрипта.
+				</li>
+			</ul>
+		</p>
+		<p>
+			Обработка, различных RSS-лент имеет очень много общих моментов,
+			поэтому
+			оказалось удобным выделить
+			<i>Шаблон</i>
+			для RSS-лент. Логика обработки конкретной RSS-ленты при этом
+			сводится
+			к написанию сравнительно небольшого скрипта для конфигурации
+			шаблона.
+			Именно такой скрипт мы
+			рассматривали в разделе
+			<xref href="../first_steps/first_steps.dita" />
+			. В итоге, скрипты были поделены на 2 категории:
+			<ul>
+				<li>Декораторы. Это шаблоны и ряд вспомогательных полезных функций.
+					Они располагаются в
+					директории decorators. Слово
+					decorators(декараторы) символизирует то, что
+					скрипты декорируют
+					контекст,
+					в котором работают скрипты пользователя.
+				</li>
+				<li>Скрипты пользователя. Это сравнительно небольшие скрипты,
+					содержащие логику работы с
+					конкретной RSS-лентой или форумом.
+				</li>
+			</ul>
+		</p>
+		<p>
+			Рассмотрим на примере RSS-ленты
+			<i>Компьютерры</i>
+			алгоритм работы декораторов:
+			<codeblock><![CDATA[
+showMessage 'готовим книжку - ждите...'
+rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
+	useTimeStamp(true,false)
+	updateItem{
+		String content = loadAsString it.relatedURL
+		if(content){
+			content = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
+			content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
+			it.htmlContent = content
+		}
+	}
+}
+showMessage 'генерация книжки завершена'			
+]]></codeblock>
+		</p>
+		<p>
+			Здесь функция
+			<cmdname>showMessage 'готовим книжку - ждите...'</cmdname>
+			- это вспомогательная функция,
+			которая появилась в результате
+			отработки декоратора
+			<cmdname>CommunicationsDecorator.groovy</cmdname>
+			.
+		</p>
+		<p>
+			А вот блок
+			<cmdname>rss(...){...}</cmdname>
+			- это результат применения шаблона
+			<cmdname>RssDecorator.groovy</cmdname>
+			.
+			Аргументы
+			<cmdname>(...)</cmdname>
+			- это простые параметры конфигурации RSS-шаблона (адрес новостной
+			ленты и ссылка на логотип).
+			Внутри блока
+			<cmdname>{...}</cmdname>
+			находятся функции дополнительной конфигурации шаблона(в нашем случае,
+			это
+			<cmdname>useTimeStamp</cmdname>
+			и
+			<cmdname>updateItem</cmdname>
+			). Эти функции переопределяют стандартные реализации из шаблона
+			<cmdname>RssDecorator.groovy</cmdname>
+			.
+		</p>
+		<p>
+			Более подробно декораторы будут рассмотрены в следующих разделах.
+		</p>
+		<p>
+			Важным понятием является Контекст выполнения скрипта. Контекст - это,
+			по сути, набор пар
+			Ключ-Значение, который доступен в скрипте под кодовым словом
+			<cmdname>binding</cmdname>
+			. При этом значение может быть как объектом, так и функцией. Перед началом выполнения
+			скрипта Контекст создается и инициализируется некоторыми стандартными
+			парами.
+			В процессе выполнения скрипта Вы можете добавлять в контекст
+			дополнительные пары.
+			Это может быть полезно если Вы получаете значение в одной функции, а
+			затем хотите использовать
+			его в другой функции.
+		</p>
+		<p>
+			Чтобы положить в контекст, например, значение "testValue" под кодом
+			"testKey", используйте следующее выражение:
+			<codeblock>
+binding.testKey = testValue
+		</codeblock>
+		</p>
+		<p>
+			Пары, которые добавляются в контекст при инициализации, описаны в
+			разделе
+			<xref href="../appendices/context.dita" />
+		</p>
+	</conbody>
+</concept>

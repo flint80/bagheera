@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="appendix_string_utils_decorator" xml:lang="ru_RU">
+	<title>StringUtilsDecorator</title>
+	<shortdesc>В этом приложении описаны функции, добавленные
+		StringUtilsDecorator.groovy. Он действует не так как остальные декораторы, он расширяет класс String, добавляя в него новые методы.
+		В результате, становится возможным использование, например, такого выражения: <cmdname>List items = 'test'.findAll('(es.*|st)')</cmdname>. Также 
+		этот декоратор расширяет класс <cmdname>groovy.util.Node</cmdname> несколькими полезными методами.
+	</shortdesc>
+	<body>
+		<table>
+		<title>Расширение класса java.lang.String</title>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Функция</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+
+				<tbody>
+					<row>
+						<entry>String findFirst(String... patterns)</entry>
+						<entry>
+							Извлекает из строки первый попавшийся блок, который соответствует одному из регулярных выражений, указанных в <cmdname>patterns</cmdname>.
+							В аргументе можно указывать несколько регулярных выражений, разделяя их запятыми. В каждом регулярном выражении должен содержаться блок, выделенный скобками.
+							Собственно, он и буде возвращен в качестве результата.
+							Пример: <cmdname>'test'.findFirst('t(e.?)')</cmdname> вернет <cmdname>es</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[List<String> getAll(String... patterns)]]></entry>
+						<entry>
+							Извлекает из строки все блоки, которые соответствует хотя бы одному из регулярных выражений, указанных в <cmdname>patterns</cmdname>.
+							В аргументе можно указывать несколько регулярных выражений, разделяя их запятыми. В каждом регулярном выражении должен содержаться блок, выделенный скобками.
+							Пример: <cmdname>'my_test'.findAll('(te.?)', 'my')</cmdname> вернет <cmdname>['tes', 'my']</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[List<String> getGroups(String pattern)]]></entry>
+						<entry>Находит первый блок, который удовлетворяет <cmdname>pattert</cmdname>, и возвращает список групп, которые указаны в <cmdname>pattern</cmdname>.
+						   Пример: <cmdname>'my_test'.getGroups('(my).+(es.?)')</cmdname> вернет <cmdname>['my', 'est']</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[String trimAll()]]></entry>
+						<entry>Удаляет все пробелы из строки.
+						   Пример: <cmdname>'my test'.trimAll()</cmdname> вернет <cmdname>mytest</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry>String deleteAll(String pattern)</entry>
+						<entry>Удаляет из строки все блоки, которые соответствуют заданному регулярному выражению.
+						   Пример: <cmdname>'my test'.deleteAll('te.?')</cmdname> вернет <cmdname>my t</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry>Date parseDate(String pattern)</entry>
+						<entry>Преобразует строку в дату, используя указанное выражение.
+						   Пример: <cmdname>'2001-01-01'.deleteAll('yyyy-MM-dd')</cmdname> вернет Первое января 2001 года.
+						</entry>
+					</row>
+					<row>
+						<entry>Node xParse()</entry>
+						<entry>Преобразует строку в элемент <xref scope="external" href="http://groovy.codehaus.org/api/groovy/util/Node.html">Node</xref>.
+						Эту функцию имеет смылс использовать в случае, если строка представляет собой <cmdname>HTML</cmdname> или <cmdname>XML</cmdname>.
+						Для парсинга используется специальный  <xref scope="external" href="http://sourceforge.net/projects/nekohtml/">SaxParser</xref>,
+						который умеет работать с некорректно сформированным <cmdname>HTML</cmdname>.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[List<String> xPath(Closure path)]]></entry>
+						<entry>Возвращает коллекцию строк, которые соответствуют указанному xPath-выражению. На самом деле используется gPath-выражения, про которые
+						можно прочитать на <xref scope="external" href="http://groovy.codehaus.org/GPath"/>. Пример 
+						<cmdname><![CDATA['<html><body><p>Пункт 1</p><p>Пункт 2</p></body></html>'.xPath{it.body.p}]]></cmdname> вернет
+						<cmdname><![CDATA['<p>Пункт 1</p><p>Пункт 2</p>]]></cmdname>
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[String xFind(Closure path)]]></entry>
+						<entry>То же, что и xPath,  только возвращает не коллекцию, а ее первый элемент, либо null, если коллекция пуста.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[List<Node> xGetNodes(Closure equator)]]></entry>
+						<entry>Преобразует строку в Node, используя xParse(), затем перебирает все дочерние узлы и выбирает из них те, для
+						которых equator возвращает true. Пример 
+						<cmdname><![CDATA['<html><body><p>Пункт 1</p><p>Пункт 2</p></body></html>'.xGetNodes{it.name() == 'p'}]]></cmdname> вернет
+						коллекцию  
+						<cmdname><![CDATA['[Node(<p>Пункт 1</p>), Node(<p>Пункт 2</p>)]]]></cmdname>
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		<table>
+		<title>Расширение класса groovy.util.Node</title>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Функция</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+
+				<tbody>
+					<row>
+						<entry>String toXML()</entry>
+						<entry>
+						    Возвращает в виде строки XML, который соответствует данному Node.
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[List<Node> xGet(Closure equator)]]></entry>
+						<entry>
+						   Возвращает  все дочерние узлы, для которых equator возвращает true.  
+						</entry>
+					</row>
+					<row>
+						<entry><![CDATA[Node xFind(Closure equator)]]></entry>
+						<entry>
+						   То же, что и xGet,  только возвращает не коллекцию, а ее первый элемент, либо null, если коллекция пуста.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+	</body>
+
+</topic>
