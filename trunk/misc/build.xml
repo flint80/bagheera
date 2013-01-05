@@ -16,6 +16,7 @@
           target: default              
          ================================= -->
 	<target name="buildJar" description="build jar">
+		<mkdir dir="dist"/>
 		<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
 			<classpath>
 				<pathelement location="${basedir}/lib/aspectjtools.jar" />
