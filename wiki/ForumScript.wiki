@@ -1,7 +1,5 @@
 = Обработка форума =
 
-Figure 1. Логика обработки форума
-
 [http://bagheera.googlecode.com/svn/trunk/help/using_program/figures/forum_logic.png]
 
  В этом разделе описана логика обработки форума, шаблон которой задается декоратором {{{ForumDecorator.groovy}}} . Более детальную информацию по методам декоратора можно посмотреть в разделе [ForumDecorator] , либо анализируя код {{{ForumDecorator.groovy}}}. Обработка форума состоит из следующих этапов:
