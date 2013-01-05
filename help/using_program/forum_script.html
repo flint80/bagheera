@@ -136,7 +136,7 @@
 					.
 				</li>
 
-				<li class="li">Создание FB2. На этом шаге генерируется контент FB2-книги.
+				<li class="li"><strong class="ph b">Создание FB2</strong>. На этом шаге генерируется контент FB2-книги.
 				</li>
 
 				<li class="li">
@@ -146,7 +146,7 @@
 					<span class="keyword cmdname">output</span>
 					.
 					При автоматической генерации имя файла составляется из названия
-					RSS-ленты и периода, за который запрошены новости.
+					ветки форума и периода, за который запрошены посты.
 					Вы можете
 					изменить алгоритм генерации имени файла, используя метод
 					<span class="keyword cmdname">buildFileName</span>
@@ -172,7 +172,7 @@
 		</div>
 
 		<p class="p">
-			Рассмотрим в качетсве примера скрипт обработки форума ForumHouse:
+			Рассмотрим в качестве примера скрипт обработки форума ForumHouse:
 		</p>
 
 		<pre class="pre codeblock">
@@ -374,7 +374,7 @@ useTimeStamp(true,true)
 			<span class="keyword cmdname">http://www.forumhouse.ru/logout/</span>
 			.
 			После перехода на эту страничку отображается окно подтверждения выхода.
-			Это окно - тоже html-страничка, на которой нудно найти кнопку с
+			Это окно - тоже html-страничка, на которой нужно найти кнопку с
 			названием Выход, определить адрес, на который эта кнопка
 			перенаправляет, и перейти по этому адресу.
 		</p>
@@ -454,7 +454,7 @@ message.content = "&lt;div&gt;$message.content&lt;/div&gt;"
 Так как загрузка вложения разрешена лишь для авторизованных пользователей, то становится понятным, зачем мы авторизовались в начале скрипта.
 Может возникнуть вопрос, почему мы загружаем изображения здесь, а не в блоке <span class="keyword cmdname">extractMessages</span>. Дело в том, что 
 в FB2-книжку могут попасть не все посты, а лишь посты, начиная с определенной даты. В этом случае загрузку вложений нужно провести не для всех постов,
-а только для тех, которые попаду в <span class="keyword cmdname">postProcessMessage{...}</span>.
+а только для тех, которые попадут в <span class="keyword cmdname">postProcessMessage{...}</span>.
 </p>
 
  <p class="p">
@@ -466,7 +466,7 @@ message.content = "&lt;div&gt;$message.content&lt;/div&gt;"
 
 <div class="related-links">
 <div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../using_program/using_program.html" title="В этой части более подробно описано использование прораммы Багира">Использование программы</a></div>
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../using_program/using_program.html" title="В этой части более подробно рассмотрено использование прораммы Багира">Использование программы</a></div>
 </div>
 </div>
 

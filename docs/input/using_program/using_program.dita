@@ -5,15 +5,15 @@
 <!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
 <topic id="using_program" xml:lang="ru_RU">
 	<title>Использование программы</title>
-	<shortdesc>В этой части более подробно описано использование прораммы &bagheera_title;</shortdesc>
+	<shortdesc>В этой части более подробно рассмотрено использование прораммы &bagheera_title;</shortdesc>
 	<body>
 		<p>
-			В этой части описаны:
+			Здесь описаны:
 		</p>
 		<ul>
-			<li>структура програма</li>
+			<li>структура программы</li>
 			<li>алгоритм обработки RSS-лент и пример обработки ленты с сайта <xref href="http://www.computerra.ru" scope="external"/></li>
-			<li>алгоритм обработки форумов и пример ветки форума с сайта <xref href="http://www.forumhouse.ru" scope="external"/></li>
+			<li>алгоритм обработки форумов и пример обработки ветки форума с сайта <xref href="http://www.forumhouse.ru" scope="external"/></li>
 			<li>алгоритм обработки произвольной HTML-странички</li>
 			<li>особенности отладки скриптов обработки интернет-ресурсов</li>
 		</ul>
