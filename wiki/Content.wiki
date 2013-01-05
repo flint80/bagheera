@@ -21,3 +21,4 @@
     * [Context Контекст]
     * [RssDecorator]
     * [ForumDecorator]
+    * [HTMLPageDecorator]
