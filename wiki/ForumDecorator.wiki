@@ -1,4 +1,4 @@
-= ForumDecorator =
+= {{{ForumDecorator}}} =
 
 В этом приложении описаны функции, добавленные ForumDecorator.groovy
 
