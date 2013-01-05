@@ -1,4 +1,4 @@
-= RssDecorator =
+= {{{RssDecorator}}} =
 
 В этом приложении описаны функции, добавленные {{{RssDecorator.groovy}}}
 
