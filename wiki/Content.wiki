@@ -24,7 +24,7 @@
     * [HTMLPageDecorator]
     * [ConversionConfigDecorator]
     * [StringUtilsDecorator]
-    * [HTMLPageDecorator]
+    * [CommunicationsDecorator]
     * [HTMLPageDecorator]
     * [HTMLPageDecorator]
     * [HTMLPageDecorator]
