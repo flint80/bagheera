@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="task" name="DC.Type">
+<meta name="DC.Title" content="Processing to XHTML targets">
+<meta content="processing DITA file, building DITA file, garage sample, XHTML, processing (building), to XHTML targets, XHTML targets, processing (building) to" name="DC.subject">
+<meta content="processing DITA file, building DITA file, garage sample, XHTML, processing (building), to XHTML targets, XHTML targets, processing (building) to" name="keywords">
+<meta name="prodname" content="DITA Open Toolkit">
+<meta content="1.4.1" name="version">
+<meta content="Richard Johnson" name="DC.Creator">
+<meta content="Anna van Raaphorst" name="DC.Contributor">
+<meta content="OASIS (Organization for the Advancement of Structured Information Standards)" name="DC.Publisher">
+<meta name="copyright" content="VR Communications, Inc. 2007" type="primary">
+<meta name="DC.Rights.Owner" content="VR Communications, Inc. 2007" type="primary">
+<meta content="2006-06-10" name="DC.Date.Created">
+<meta content="2007-04-17" name="DC.Date.Modified">
+<meta content="XHTML" name="DC.Format">
+<meta content="processing_xhtml" name="DC.Identifier">
+<link href="../../../commonltr.css" type="text/css" rel="stylesheet">
+<title>Processing to XHTML targets</title>
+</head>
+<body id="processing_xhtml"><a name="processing_xhtml"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Processing to XHTML targets</h1>
+
+	
+	<div class="body taskbody">
+		<div class="section prereq p">This topic assumes you have already installed DITA Open Toolkit and its prerequisite products, and have verified your installation, as described in the installation chapter of this document.</div>
+
+		<div class="section context">In general, the instructions in this topic assume the Windows environment; the procedure is very similar in other operating system environments.</div>
+
+		<ol class="ol steps"><li class="li step">
+				<span class="ph cmd">If you have not already done so, create <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE</span> and <span class="ph filepath">DITASAMPLE_GARAGE_OUTPUT</span> directories in the root directory of your <span class="ph filepath">C:</span> drive (or your <span class="ph filepath">/home</span> directory in Linux).</span>
+			</li>
+<li class="li step">
+				<span class="ph cmd">If you have not already done so, copy the garage sample files into the <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE</span> directory.</span>
+				 
+					<p class="p">You should have a directory structure that looks like this:</p>
+
+					<p class="p">
+						<img class="image" src="../images/garagesample_directory.png">
+					</p>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">View and edit, if necessary for your specific working environment, <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE/ant_scripts/garage_hierarchy_all.xml</span>.</span>
+				 
+					<div class="p">These are the significant Ant parameters and how they are set:
+				<ul class="ul">
+							<li class="li">
+								<strong class="ph b">args.input</strong> is set to use the hierarchy ditamap: <span class="ph filepath">hierarchy.ditamap</span> in the <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE</span> directory.</li>
+
+							<li class="li">
+								<strong class="ph b">output.dir</strong> is set to send the output to <span class="ph filepath">DITASAMPLE_GARAGE_OUTPUT</span>.</li>
+
+							<li class="li">
+								<strong class="ph b">transtype</strong> is set to xhtml.</li>
+
+						</ul>
+
+					</div>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">In the Command Prompt window, move to <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE/ant_scripts</span> and invoke the above Ant script.</span>
+				 For example: <kbd class="ph userinput">ant -f garage_hierarchy_all.xml dita2xhtml</kbd>
+				
+				 Alternatively, if you are processing in the Windows environment, you can use the garage sample batch script (<span class="ph filepath">runbuild.bat</span>): <kbd class="ph userinput">runbuild dita2xhtml</kbd>. The batch script is in the <span class="ph filepath">DITASAMPLE_GARAGE_SOURCE</span> directory. The processing is the same, except the batch script filters some of the processing messages into the log file, which is created in the <span class="ph filepath">DITASAMPLE_GARAGE_OUTPUT</span> directory during processing.
+				 Alternatively, if you are processing in the Linux or UNIX environment, you can create your own batch script to perform the same functions as <span class="ph filepath">runbuild.bat</span>.
+			</li>
+<li class="li step">
+				<span class="ph cmd">After the XHTML file has processed successfully, go to the <span class="ph filepath">DITASAMPLE_GARAGE_OUTPUT</span> directory.</span>
+				 Your directory structure should look like this:
+				<p class="p">
+						<img class="image" src="../images/processing_xhtml1.png">
+					</p>
+
+					<p class="p">The <span class="ph filepath">xhtml</span> subdirectory should contain these directories and files:</p>
+
+					<p class="p">
+						<img class="image" src="../images/processing_xhtml2.png">
+					</p>
+
+				
+			</li>
+<li class="li step">
+				<span class="ph cmd">Open the file <span class="ph filepath">index.html</span> in your browser to view the XHTML output.</span>
+				 The browser window should look something like this:
+				<p class="p">
+						<img class="image" src="../images/processing_xhtml_browser.png">
+					</p>
+
+				
+			</li>
+</ol>
+
+	</div>
+
+
+</body>
+</html>

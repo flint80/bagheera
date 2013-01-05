@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="appendix_authorization_decorator" xml:lang="ru_RU">
+	<title>Authorization</title>
+	<shortdesc>В этом приложении описаны функции, добавленные
+		Authorization.groovy. Эти функции позволяют залогиниться на сайт и
+		разлогиниться с сайта.
+	</shortdesc>
+	<body>
+		<p>
+			Функции становятся доступными в контексте
+			<cmdname>authorize.login</cmdname>
+			и
+			<cmdname>authorize.logout</cmdname>
+			:
+			<codeblock>
+authorize{
+	login{
+		...
+	}
+	logout{
+		...
+	}
+}	  
+	 </codeblock>
+		</p>
+		<section id="login">
+			<title>
+				Контекст
+				<cmdname>login</cmdname>
+			</title>
+			<p>
+				Логин производится с помощью отправки post-запроса, в котором указаны
+				логин и пароль, поэтому все функции, которые доступны в контексте
+				login
+				связаны с конфигурацией post-запроса.
+			</p>
+			<table>
+				<tgroup cols="2">
+					<colspec colwidth="1*" />
+					<colspec colwidth="2*" />
+					<thead>
+						<row>
+							<entry align="center">Функция</entry>
+							<entry align="center">Описание</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>void url(String value)</entry>
+							<entry>
+								Определяет url, по которому отправляется запрос.
+							</entry>
+						</row>
+						<row>
+							<entry>void loginField(String value)</entry>
+							<entry>
+								Определяет id текстового поля, в которое нужно вводить логин.
+							</entry>
+						</row>
+						<row>
+							<entry>void login(String value)</entry>
+							<entry>
+								Задает логин.
+							</entry>
+						</row>
+						<row>
+							<entry>void passwordField(String value)</entry>
+							<entry>
+								Определяет id текстового поля, в которое нужно вводить пароль.
+							</entry>
+						</row>
+						<row>
+							<entry>void password(String value)</entry>
+							<entry>
+								Задает пароль.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</section>
+		<section id="logout">
+			<title>
+				Контекст
+				<cmdname>logout</cmdname>
+			</title>
+			<p>
+				Логаут производится с помощью отправки get-запроса на указанный url. Зачастую, после этого нужно подтвердить намерение
+				выйти, нажав на определенную кнопку на этой страничке. При этом, на самом деле, происходит отправка еще одного get-запроса,
+				в параметрах которого закодирован ключ подтверждения. Соответственно, возникает задача выделить этот ключ из 
+				контента страницы, полученной по url.  
+			</p>
+			<table>
+				<tgroup cols="2">
+					<colspec colwidth="1*" />
+					<colspec colwidth="2*" />
+					<thead>
+						<row>
+							<entry align="center">Функция</entry>
+							<entry align="center">Описание</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>void url(String value)</entry>
+							<entry>
+								Определяет url, по которому отправляется запрос.
+							</entry>
+						</row>
+						<row>
+							<entry>String confirmLogout{String content->...}</entry>
+							<entry>
+								Задает алгоритм, по которому из контента, полученного по url, вычленяется адрес страницы подтверждения выхода.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</section>
+	</body>
+
+</topic>

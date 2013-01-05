@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName='com.flinty.book.bagheera.main.Bagheera'
+
+applicationDistribution.from('scripts') { into 'scripts' }
+applicationDistribution.from('config') { into 'config' }
+applicationDistribution.from('help') { into 'help' }
+
+
+startScripts {
+	doLast {
+		def m = windowsScript.text =~ "set CLASSPATH=(.*)"
+		windowsScript.text = file('scripts/run-scripts/bagheera.bat.template').getText().replace("classpath.template", m[0][1])
+	}
+}
+
+dependencies {
+	groovy fileTree(dir: 'lib', include: 'groovy*.jar')
+	compile fileTree(dir: 'lib', include: '*.jar', exclude: '**/opt/*')
+	testCompile fileTree(dir: 'lib', include: '**/*.jar')
+}
+
+
+test{
+	jvmArgs "-javaagent:${file('.').getAbsolutePath()}/lib/opt/aspectjweaver.jar"
+	maxParallelForks 1
+	forkEvery 1
+	beforeTest { descriptor ->
+		println "Running test: " + descriptor
+	}
+	doFirst{
+		copy {
+			from 'src/test/groovy'
+			into 'build/classes/test'
+			include '**/testdata/*'
+		}
+	}
+}
+
+

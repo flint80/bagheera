@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="appendix_literature" xml:lang="ru_RU">
+	<title>Полезная литература</title>
+	<shortdesc>В этом приложении представлен список литературы, полезной
+		при
+		работе с программой
+	</shortdesc>
+	<body>
+		<p>При работе с программой наиболее часто мне пришлось обращаться к
+			материалам следующих статей:</p>
+			<ol>
+				<li><xref href = "http://groovy.codehaus.org/Strings+and+GString" format="html" scope="external"/> - работа со строками в <cmdname>Groovy</cmdname></li>
+				<li><xref href = "http://groovy.codehaus.org/Collections" format="html" scope="external"/> - работа со коллекциями в <cmdname>Groovy</cmdname></li>
+			</ol>
+		<p>Прочитав руководство и используя материалы из этих статей Вы сможете написать обработчик 90% rss-лент и форумов. Кроме того, Вы сможете модифицировать существующие и даже написать 
+		собственные  декораторы. Однако, если Вы столкнулись со сложным случаем, либо хотите вникнуть в суть работы декораторов, я рекомендую Вам прочитать
+		следующую книгу по <cmdname>Groovy</cmdname></p>
+		<ol>
+			<li><xref href = "http://www.packtpub.com/groovy-for-domain-specific-languages-dsl/book" format="html" scope="external">Groovy for Domain-Specific Languages, Fergal Dearle</xref></li>
+		</ol>	
+	</body>
+	
+</topic>

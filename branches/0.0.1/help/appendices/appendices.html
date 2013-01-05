@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru_ru" xml:lang="ru_ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Приложения"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/context.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/rss_api.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/forum_api.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/html_api.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/conversion_config_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/string_utils_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/communications_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/data_storage_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/http_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/logger_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/authorization_decorator.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/supplementary_classes.html"/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/appendix_literature.html"/>
+<meta name="DC.Creator" content="Авраменко Владимир"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="appendices"/>
+<meta name="DC.Language" content="ru_RU"/>
+<link rel="stylesheet" type="text/css" href="../commonltr.css"/>
+<title>Приложения</title>
+</head>
+<body id="appendices"><a name="appendices"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Приложения</h1>
+
+	<div class="body">
+		<p class="p">
+			В этой части представлены справочные материалы:
+		</p>
+
+		<ul class="ul">
+			<li class="li">Список полезной литературы</li>
+
+			<li class="li">Описания декораторов</li>
+
+			<li class="li">Описания вспомогательных классов</li>
+
+		</ul>
+
+	</div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../appendices/context.html">Контекст</a></strong><br/>
+Здесь описаны ключи объектов переменные, доступные в контексте выполнения скрипта с помощью конструкции вида <span class="keyword cmdname">binding.key</span></li>
+<li class="link ulchildlink"><strong><a href="../appendices/rss_api.html">RssDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		RssDecorator.groovy 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/forum_api.html">ForumDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		ForumDecorator.groovy 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/html_api.html">HTMLPageDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		HTMLPageDecorator.groovy 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/conversion_config_decorator.html">ConversionConfigDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		ConversionConfigDecorator.groovy. Эти функции позволяют переопределить параметры создания FB2-книги непосрественно в скрипте. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/string_utils_decorator.html">StringUtilsDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		StringUtilsDecorator.groovy. Он действует не так как остальные декораторы, он расширяет класс String, добавляя в него новые методы. 		В результате, становится возможным использование, например, такого выражения: <span class="keyword cmdname">List items = 'test'.findAll('(es.*|st)')</span>. Также  		этот декоратор расширяет класс <span class="keyword cmdname">groovy.util.Node</span> несколькими полезными методами. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/communications_decorator.html">CommunicationsDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		CommunicationsDecorator.groovy. Он добавляет несколько полезных методов, для сохранения данных и диалога с пользователем. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/data_storage_decorator.html">DataStorageDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		DataStorageDecorator.groovy. Он добавляет несколько полезных методов, для сохранения данных и диалога с пользователем. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/http_decorator.html">HTTPDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		HTTPDecorator.groovy. Он добавляет несколько полезных методов для загрузки данных из сети 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/logger_decorator.html">LoggerDecorator</a></strong><br/>
+В этом приложении описаны функции, добавленные 		LoggerDecorator.groovy. Он добавляет несколько полезных методов для логирования. Все логи пишутся в файл <span class="keyword cmdname">logs/script.log</span>. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/authorization_decorator.html">Authorization</a></strong><br/>
+В этом приложении описаны функции, добавленные 		Authorization.groovy. Эти функции позволяют залогиниться на сайт и 		разлогиниться с сайта. 	</li>
+<li class="link ulchildlink"><strong><a href="../appendices/supplementary_classes.html">Вспомогательные классы</a></strong><br/>
+В этом разделе описаны вспомогательные классы, которые активно используются при написании скриптов</li>
+<li class="link ulchildlink"><strong><a href="../appendices/appendix_literature.html">Полезная литература</a></strong><br/>
+В этом приложении представлен список литературы, полезной 		при 		работе с программой 	</li>
+</ul>
+</div>
+
+</body>
+</html>

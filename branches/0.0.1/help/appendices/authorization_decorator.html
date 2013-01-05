@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru_ru" xml:lang="ru_ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Authorization"/>
+<meta name="abstract" content="В этом приложении описаны функции, добавленные Authorization.groovy. Эти функции позволяют залогиниться на сайт и разлогиниться с сайта."/>
+<meta name="description" content="В этом приложении описаны функции, добавленные Authorization.groovy. Эти функции позволяют залогиниться на сайт и разлогиниться с сайта."/>
+<meta name="DC.Relation" scheme="URI" content="../appendices/appendices.html"/>
+<meta name="DC.Creator" content="Авраменко Владимир"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="appendix_authorization_decorator"/>
+<meta name="DC.Language" content="ru_RU"/>
+<link rel="stylesheet" type="text/css" href="../commonltr.css"/>
+<title>Authorization</title>
+</head>
+<body id="appendix_authorization_decorator"><a name="appendix_authorization_decorator"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Authorization</h1>
+
+	
+	<div class="body"><p class="shortdesc">В этом приложении описаны функции, добавленные
+		Authorization.groovy. Эти функции позволяют залогиниться на сайт и
+		разлогиниться с сайта.
+	</p>
+
+		<div class="p">
+			Функции становятся доступными в контексте
+			<span class="keyword cmdname">authorize.login</span>
+			и
+			<span class="keyword cmdname">authorize.logout</span>
+			:
+			<pre class="pre codeblock">
+authorize{
+	login{
+		...
+	}
+	logout{
+		...
+	}
+}	  
+	 </pre>
+
+		</div>
+
+		<div class="section" id="appendix_authorization_decorator__login"><a name="appendix_authorization_decorator__login"><!-- --></a><h2 class="title sectiontitle">
+				Контекст
+				<span class="keyword cmdname">login</span>
+			</h2>
+			
+			<p class="p">
+				Логин производится с помощью отправки post-запроса, в котором указаны
+				логин и пароль, поэтому все функции, которые доступны в контексте
+				login
+				связаны с конфигурацией post-запроса.
+			</p>
+
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" align="center" valign="top" width="33.33333333333333%" id="d410e51">Функция</th>
+
+							<th class="entry" align="center" valign="top" width="66.66666666666666%" id="d410e54">Описание</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e51 ">void url(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e54 ">
+								Определяет url, по которому отправляется запрос.
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e51 ">void loginField(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e54 ">
+								Определяет id текстового поля, в которое нужно вводить логин.
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e51 ">void login(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e54 ">
+								Задает логин.
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e51 ">void passwordField(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e54 ">
+								Определяет id текстового поля, в которое нужно вводить пароль.
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e51 ">void password(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e54 ">
+								Задает пароль.
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+		</div>
+
+		<div class="section" id="appendix_authorization_decorator__logout"><a name="appendix_authorization_decorator__logout"><!-- --></a><h2 class="title sectiontitle">
+				Контекст
+				<span class="keyword cmdname">logout</span>
+			</h2>
+			
+			<p class="p">
+				Логаут производится с помощью отправки get-запроса на указанный url. Зачастую, после этого нужно подтвердить намерение
+				выйти, нажав на определенную кнопку на этой страничке. При этом, на самом деле, происходит отправка еще одного get-запроса,
+				в параметрах которого закодирован ключ подтверждения. Соответственно, возникает задача выделить этот ключ из 
+				контента страницы, полученной по url.  
+			</p>
+
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					
+					
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" align="center" valign="top" width="33.33333333333333%" id="d410e133">Функция</th>
+
+							<th class="entry" align="center" valign="top" width="66.66666666666666%" id="d410e136">Описание</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e133 ">void url(String value)</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e136 ">
+								Определяет url, по которому отправляется запрос.
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" width="33.33333333333333%" headers="d410e133 ">String confirmLogout{String content-&gt;...}</td>
+
+							<td class="entry" valign="top" width="66.66666666666666%" headers="d410e136 ">
+								Задает алгоритм, по которому из контента, полученного по url, вычленяется адрес страницы подтверждения выхода.
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+		</div>
+
+	</div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../appendices/appendices.html">Приложения</a></div>
+</div>
+</div>
+
+</body>
+</html>
