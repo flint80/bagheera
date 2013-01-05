@@ -1,4 +1,4 @@
-= ConversionConfigDecorator =
+= {{{ConversionConfigDecorator}}} =
 
 В этом приложении описаны функции, добавленные ConversionConfigDecorator.groovy. Эти функции позволяют переопределить параметры создания FB2-книги непосрественно в скрипте.
 
