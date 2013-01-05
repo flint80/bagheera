@@ -22,7 +22,7 @@
     * [RssDecorator]
     * [ForumDecorator]
     * [HTMLPageDecorator]
-    * [PageName ConversionConfigDecorator]
+    * [ConversionConfigDecorator]
     * [StringUtilsDecorator]
     * [HTMLPageDecorator]
     * [HTMLPageDecorator]
