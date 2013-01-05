@@ -10,3 +10,4 @@
     * [ProgramStructure Структура программы]
     * [RssScript Обработка RSS-ленты]
     * [ForumScript Обработка форума]
+    * [HTMLPageScript Обработка HTML-страницы]
