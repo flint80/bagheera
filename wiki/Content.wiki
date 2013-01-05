@@ -26,6 +26,6 @@
     * [StringUtilsDecorator]
     * [CommunicationsDecorator]
     * [DataStorageDecorator]
-    * [HTMLPageDecorator]
+    * [HTTPDecorator]
     * [HTMLPageDecorator]
     * [HTMLPageDecorator]
