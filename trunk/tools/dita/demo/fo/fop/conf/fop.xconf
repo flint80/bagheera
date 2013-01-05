@@ -82,63 +82,63 @@ the location of this file.
           <font-triplet name="ArialMT" style="normal" weight="bold"/>
         </font>
         -->
-	  <font  metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgia.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgia.ttf">
+	  <font  metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgia.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgia.ttf">
 	      <font-triplet name="Georgia" style="normal" weight="normal"/>
 	      <font-triplet name="GeorgiaMT" style="normal" weight="normal"/>
 	    </font>
-	    <font  metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiab.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiab.ttf">
+	    <font  metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiab.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiab.ttf">
 	      <font-triplet name="Georgia" style="normal" weight="bold"/>
 	      <font-triplet name="GeorgiaMT" style="normal" weight="bold"/>
 	    </font>
-	    <font  metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiai.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiai.ttf">
+	    <font  metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiai.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiai.ttf">
 	      <font-triplet name="Georgia" style="italic" weight="normal"/>
 	      <font-triplet name="GeorgiaMT" style="italic" weight="normal"/>
 	    </font>
-	    <font  metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiaz.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/georgiaz.ttf">
+	    <font  metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiaz.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/georgiaz.ttf">
 	      <font-triplet name="Georgia" style="italic" weight="bold"/>
 	      <font-triplet name="GeorgiaMT" style="italic" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arial.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arial.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arial.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arial.ttf">
 	      <font-triplet name="Arial" style="normal" weight="normal"/>
 	      <font-triplet name="ArialMT" style="normal" weight="normal"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arialbd.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arialbd.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arialbd.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arialbd.ttf">
 	      <font-triplet name="Arial" style="normal" weight="bold"/>
 	      <font-triplet name="ArialMT" style="normal" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/ariali.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/ariali.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/ariali.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/ariali.ttf">
 	      <font-triplet name="Arial" style="italic" weight="normal"/>
 	      <font-triplet name="ArialMT" style="italic" weight="normal"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arialbi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/arialbi.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arialbi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/arialbi.ttf">
 	      <font-triplet name="Arial" style="italic" weight="bold"/>
 	      <font-triplet name="ArialMT" style="italic" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/times.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/times.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/times.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/times.ttf">
 	      <font-triplet name="Times" style="normal" weight="normal"/>
 	      <font-triplet name="TimesMT" style="normal" weight="normal"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesbd.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesbd.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesbd.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesbd.ttf">
 	      <font-triplet name="Times" style="normal" weight="bold"/>
 	      <font-triplet name="TimesMT" style="normal" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesi.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesi.ttf">
 	      <font-triplet name="Times" style="italic" weight="normal"/>
 	      <font-triplet name="TimesMT" style="italic" weight="normal"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesbi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/timesbi.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesbi.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/timesbi.ttf">
 	      <font-triplet name="Times" style="italic" weight="bold"/>
 	      <font-triplet name="TimesMT" style="italic" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdana.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdana.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdana.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdana.ttf">
 	      <font-triplet name="Verdana" style="normal" weight="normal"/>
 	      <font-triplet name="VerdanaMT" style="normal" weight="normal"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdanab.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdanab.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdanab.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdanab.ttf">
 	      <font-triplet name="Verdana" style="normal" weight="bold"/>
 	      <font-triplet name="VerdanaMT" style="normal" weight="bold"/>
 	    </font>
-	    <font metrics-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdanai.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\Bagheera\tools\dita\demo\fo\fop\fonts/verdanai.ttf">
+	    <font metrics-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdanai.xml" kerning="yes" embed-url="E:\Users\avramenko\sts-workspace\bagheera2\trunk\tools\dita\demo\fo\fop\fonts/verdanai.ttf">
 	      <font-triplet name="Verdana" style="italic" weight="normal"/>
 	      <font-triplet name="VerdanaMT" style="italic" weight="normal"/>
 	    </font>  
