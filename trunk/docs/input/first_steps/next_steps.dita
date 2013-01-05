@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_dir SYSTEM "../constants/bagheera_dir.dita">]>
+<concept id="next_steps" xml:lang="ru_RU">
+	<title>Следующие шаги</title>
+	<conbody>
+		<p>
+			В принципе, теперь Вы знакомы с основными возможностями программы,
+			и
+			у Вас достаточно знаний для создания FB2-книжек из RSS-лент, в
+			которых содержится полный контент новостей.
+		</p>
+		<p>Если Вам этого недостаточно(например, RSS-лента содержит лишь анонс
+			статьи, а Вам нужна полная версия статьи), Вам придется читать
+			остальные части настоящего руководства
+		</p>
+		<p>
+			В конце этой части я приведу пару советов.
+			<ul>
+				<li>
+					Как Вы помните, при
+					создании очередной версии книги программа
+					использует сохраненную
+					временную метку и включает в книгу лишь новые
+					статьи. Вам модет
+					понадобиться пересоздать книжку за прошедший
+					период. Для этого достаточно
+					стереть папку
+					<cmdname>temp</cmdname>
+					и перазапустить программу.
+				</li>
+				<li>
+					Может возникнуть необходимость создать книгу за некоторый
+					фиксированный период времени без учета временных меток. Для этого
+					Вам придется незначительно модифицировать скрипт
+					<cmdname>bash.groovy</cmdname>
+					:
+					<pre>
+//@ description Bash
+
+showMessage 'готовим книжку - ждите...'
+rss('http://bash.org.ru/rss/', 'http://s.bash.org.ru/logo.gif'){
+	ignoreTimeStamp(true)
+}
+showMessage 'книжка успешно создана'
+					</pre>
+					При этом при создании книги у Вас запросят количество дней, за
+					которые нужно получить новостную ленту.
+				</li>
+			</ul>
+		</p>
+	</conbody>
+</concept>

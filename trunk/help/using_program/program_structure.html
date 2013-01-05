@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru_ru" xml:lang="ru_ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Структура программы"/>
+<meta name="DC.Relation" scheme="URI" content="../using_program/using_program.html"/>
+<meta name="DC.Creator" content="Авраменко Владимир"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="program_structure"/>
+<meta name="DC.Language" content="ru_RU"/>
+<link rel="stylesheet" type="text/css" href="../commonltr.css"/>
+<title>Структура программы</title>
+</head>
+<body id="program_structure"><a name="program_structure"><!-- --></a>
+
+
+	<h1 class="title topictitle1">Структура программы</h1>
+
+	<div class="body conbody">
+		<div class="fig fignone"><span class="figcap">Figure 1. Структура программы</span>
+			
+			<p class="p">
+				<img class="image" src="figures/program_structure.png"/>
+			</p>
+
+		</div>
+
+		<div class="p">
+			Структуру программы Багира
+			условно можно разделить на две части:
+			<ul class="ul">
+				<li class="li">
+					Ядро программы. Это набор файлов, скомпилированных в библиотеку.
+					Эту
+					часть программы пользователь менять не может. Ядро - это, по
+					сути,
+					графический интерфейс для взаимодействия с пользователем и
+					набор библиотечных
+					функций,
+					позволяющих получать данные из сети и
+					создавать FB2 книги.
+				</li>
+
+				<li class="li">Скрипты для работы с данными. Это набор groovy скриптов, которые
+					и задают логику создания книги из того, или иного источника:
+					RSS-ленты, или форума. Эту файлы можно редактировать. Обработка
+					новой RSS-ленты или форума, сводится к добавлению очередного
+					скрипта.
+				</li>
+
+			</ul>
+
+		</div>
+
+		<div class="p">
+			Обработка, различных RSS-лент имеет очень много общих моментов,
+			поэтому
+			оказалось удобным выделить
+			<em class="ph i">Шаблон</em>
+			для RSS-лент. Логика обработки конкретной RSS-ленты при этом
+			сводится
+			к написанию сравнительно небольшого скрипта для конфигурации
+			шаблона.
+			Именно такой скрипт мы
+			рассматривали в разделе
+			<a class="xref" href="../first_steps/first_steps.html" title="Программа Багира предназначена для создания FB2-книг из различных WEB-источников информации, таких как RSS-ленты и форумы. Прочитав эту часть, Вы уже сможете сгенерировать простые FB2-книжки из RSS-лент.">Первые шаги</a>
+			. В итоге, скрипты были поделены на 2 категории:
+			<ul class="ul">
+				<li class="li">Декораторы. Это шаблоны и ряд вспомогательных полезных функций.
+					Они располагаются в
+					директории decorators. Слово
+					decorators(декараторы) символизирует то, что
+					скрипты декорируют
+					контекст,
+					в котором работают скрипты пользователя.
+				</li>
+
+				<li class="li">Скрипты пользователя. Это сравнительно небольшие скрипты,
+					содержащие логику работы с
+					конкретной RSS-лентой или форумом.
+				</li>
+
+			</ul>
+
+		</div>
+
+		<div class="p">
+			Рассмотрим на примере RSS-ленты
+			<em class="ph i">Компьютерры</em>
+			алгоритм работы декораторов:
+			<pre class="pre codeblock">
+showMessage 'готовим книжку - ждите...'
+rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
+	useTimeStamp(true,false)
+	updateItem{
+		String content = loadAsString it.relatedURL
+		if(content){
+			content = content.findFirst('&lt;div id="content"&gt;(.*)&lt;div id="fin"&gt;', '&lt;!-- start --&gt;(.*)&lt;!-- fin --&gt;', '&lt;div id="content"&gt;(.*)')
+			content = content.deleteAll('&lt;form.+?/form&gt;','&lt;noscript.+?/noscript&gt;', '&lt;iframe.+?/&gt;')
+			it.htmlContent = content
+		}
+	}
+}
+showMessage 'генерация книжки завершена'			
+</pre>
+
+		</div>
+
+		<p class="p">
+			Здесь функция
+			<span class="keyword cmdname">showMessage 'готовим книжку - ждите...'</span>
+			- это вспомогательная функция,
+			которая появилась в результате
+			отработки декоратора
+			<span class="keyword cmdname">CommunicationsDecorator.groovy</span>
+			.
+		</p>
+
+		<p class="p">
+			А вот блок
+			<span class="keyword cmdname">rss(...){...}</span>
+			- это результат применения шаблона
+			<span class="keyword cmdname">RssDecorator.groovy</span>
+			.
+			Аргументы
+			<span class="keyword cmdname">(...)</span>
+			- это простые параметры конфигурации RSS-шаблона (адрес новостной
+			ленты и ссылка на логотип).
+			Внутри блока
+			<span class="keyword cmdname">{...}</span>
+			находятся функции дополнительной конфигурации шаблона(в нашем случае,
+			это
+			<span class="keyword cmdname">useTimeStamp</span>
+			и
+			<span class="keyword cmdname">updateItem</span>
+			). Эти функции переопределяют стандартные реализации из шаблона
+			<span class="keyword cmdname">RssDecorator.groovy</span>
+			.
+		</p>
+
+		<p class="p">
+			Более подробно декораторы будут рассмотрены в следующих разделах.
+		</p>
+
+		<p class="p">
+			Важным понятием является Контекст выполнения скрипта. Контекст - это,
+			по сути, набор пар
+			Ключ-Значение, который доступен в скрипте под кодовым словом
+			<span class="keyword cmdname">binding</span>
+			. При этом значение может быть как объектом, так и функцией. Перед началом выполнения
+			скрипта Контекст создается и инициализируется некоторыми стандартными
+			парами.
+			В процессе выполнения скрипта Вы можете добавлять в контекст
+			дополнительные пары.
+			Это может быть полезно если Вы получаете значение в одной функции, а
+			затем хотите использовать
+			его в другой функции.
+		</p>
+
+		<div class="p">
+			Чтобы положить в контекст, например, значение "testValue" под кодом
+			"testKey", используйте следующее выражение:
+			<pre class="pre codeblock">
+binding.testKey = testValue
+		</pre>
+
+		</div>
+
+		<p class="p">
+			Пары, которые добавляются в контекст при инициализации, описаны в
+			разделе
+			<a class="xref" href="../appendices/context.html" title="Здесь описаны ключи объектов переменные, доступные в контексте выполнения скрипта с помощью конструкции вида binding.key">Контекст</a>
+		</p>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../using_program/using_program.html" title="В этой части более подробно описано использование прораммы Багира">Использование программы</a></div>
+</div>
+</div>
+
+</body>
+</html>

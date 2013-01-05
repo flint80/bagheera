@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="appendix_forum_api" xml:lang="ru_RU">
+	<title>ForumDecorator</title>
+	<shortdesc>В этом приложении описаны функции, добавленные
+		ForumDecorator.groovy
+	</shortdesc>
+	<body>
+		<table>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Функция</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+
+				<tbody>
+					<row>
+						<entry>forum(String coverPageURL)</entry>
+						<entry>
+							Конструктор.
+							<cmdname>coverPageURL</cmdname>
+							- адрес логотипа ленты, - является опциональным аргументом.
+							Логотип используется в качестве обложки FB2-книги.
+						</entry>
+					</row>
+					<row>
+						<entry>void useTimeStamp(boolean askForTimeStampValue,boolean
+							confirmTimeStampValue)
+						</entry>
+						<entry>
+							Использование временной метки для определения начала периода.
+							<cmdname>askForTimeStampValue</cmdname>
+							- выводить ли диалоговое окно с редактором даты начала периода.
+							Значение по-умолчанию:
+							<cmdname>false</cmdname>
+							.
+							<cmdname>confirmTimeStampValue</cmdname>
+							- выводить ли диалоговое окно для подтверждения обновленного
+							значения временной ветки.
+							Значение по-умолчанию:
+							<cmdname>false</cmdname>
+							.
+						</entry>
+					</row>
+					<row>
+						<entry>void authorize{->...}
+						</entry>
+						<entry>
+							Фукнция задает алгоритм авторизации (детали см. в <xref href="authorization_decorator.dita"/>)
+						</entry>
+					</row>
+					<row>
+						<entry>String extractTitle{String content ->...}
+						</entry>
+						<entry>
+							Функция задает алгоритм определения заголовка форума из содержимого первой страницы (<cmdname>content</cmdname>).
+						</entry>
+					</row>
+					<row>
+						<entry>String extractNextPageUrl{String content, int pageNumber ->...}
+						</entry>
+						<entry>
+							Функция задает алгоритм определения url следующей страницы форума из содержимого текущей страницы (<cmdname>content</cmdname>)
+							и номера текущей страницы.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+	</body>
+
+</topic>

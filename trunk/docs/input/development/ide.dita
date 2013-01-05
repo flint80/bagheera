@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. --><!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. --><!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "../../dtd/concept.dtd" [
+<!ENTITY bagheera_title SYSTEM "../constants/bagheera_title.dita">]>
+<concept id="ide" xml:lang="ru_RU">
+	<title>Среда разработки</title>
+	<conbody>
+		<p>
+			Для разработки удобнее всего использовать Spring Tool Suite версии не ниже 3.0, которая доступнв для скачивания
+			со странички <xref href="http://www.springsource.org/sts" scope="external"/>. После скачивания и запуска, Вам необходимо установить
+			плагин Groovy (Help-> Dashboard-> Extensions. В поиске ввести Groovy, отметить Groovy-Eclipse и Groovy Compiler).
+			В исходниках содержится файл проекта для Spring Tool Suite. Откройте его, и у Вас в launch, run и debug - конфигурациях
+			должны отобразится соответствующие ссылки для сборки и запуска приложения.		 
+		</p>
+	</conbody>
+</concept>

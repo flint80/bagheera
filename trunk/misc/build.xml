@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     26.09.2012 11:17:51                                                        
+
+     aspectJ test    
+     description
+                   
+     avramenko                                                                
+     ====================================================================== -->
+<project name="aspectJ test" default="buildJar" basedir=".">
+	<description>
+            description
+    </description>
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="buildJar" description="build jar">
+		<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+			<classpath>
+				<pathelement location="${basedir}/lib/aspectjtools.jar" />
+			</classpath>
+		</taskdef>
+		<iajc source="1.6" outjar="${basedir}/dist/cachingaspect.jar" outxml="true">
+			<src path="${basedir}/src"/>
+			<include name="**/*.aj" />
+			<classpath>
+				<fileset dir="${basedir}/lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</iajc>
+	</target>
+
+</project>

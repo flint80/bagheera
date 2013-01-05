@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of the DITA Open Toolkit project hosted on Sourceforge.net. 
+	See the accompanying license.txt file for applicable licenses. -->
+<!-- (c) Copyright IBM Corp. 2004, 2005 All Rights Reserved. -->
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN"
+ "../../dtd/topic.dtd">
+<topic id="supplementary_classes_storage" xml:lang="ru_RU">
+	<title>Storage</title>
+	<shortdesc>
+		Этот класс предоставляет функции для сохранения данных,
+		поученных в результате выполнения скрипта
+	</shortdesc>
+	<body>
+		<table>
+			<title>com.flinty.book.bagheera.model.IScriptDataStorage</title>
+			<tgroup cols="2">
+				<colspec colwidth="1*" />
+				<colspec colwidth="2*" />
+				<thead>
+					<row>
+						<entry align="center">Метод</entry>
+						<entry align="center">Описание</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>Map getMetadata(String scriptFileName)</entry>
+						<entry>
+							считывает метаданные указанного скрипта(обычно используется
+							для хранения введенных пользователем значений: дата начала
+							периода и т.д.)
+						</entry>
+					</row>
+					<row>
+						<entry>void saveMetadata(String scriptFileName, Map metadata)
+						</entry>
+						<entry>
+							сохраняет метаданые указанного скрипта
+						</entry>
+					</row>
+					<row>
+						<entry>Serializable getData(String scriptFileName)</entry>
+						<entry>
+							считывает данные указанного скрипта(обычно используется для
+							хранения истории загруженных новостей)
+						</entry>
+					</row>
+					<row>
+						<entry>void saveData(String scriptFileName, Serializable data)
+						</entry>
+						<entry>
+							сохраняет данные указанного скрипта
+						</entry>
+					</row>
+					<row>
+						<entry>File saveTempData(String fileName, byte[] content)</entry>
+						<entry>
+							сохраняет временные данные (обычно используется для
+							кеширования загруженных attachements); после отработки скрипта
+							эти данные стираются
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+
+
+	</body>
+</topic>
