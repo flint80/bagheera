@@ -6,7 +6,7 @@
  "../../dtd/topic.dtd">
 <topic id="context" xml:lang="ru_RU">
 	<title>Контекст</title>
-	<shortdesc>Здесь описаны ключи объектов переменные, доступные в контексте выполнения скрипта с помощью конструкции вида <cmdname>binding.key</cmdname></shortdesc>
+	<shortdesc>Здесь описаны ключи объектов, доступных в контексте выполнения скрипта с помощью конструкции вида <cmdname>binding.key</cmdname></shortdesc>
 	<body>
 		<table>
 			<title>Контекст</title>
