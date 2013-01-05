@@ -3,3 +3,4 @@
 ==Первые шаги==
     * [Introduction Введение]
     * [Installation Установка программы]
+    * [FirstScript Ваш первый скрипт]
