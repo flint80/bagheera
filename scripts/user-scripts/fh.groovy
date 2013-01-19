@@ -74,7 +74,7 @@ forum('http://www.forumhouse.ru/styles/fh/logo.png'){
 				contentStr = ' '
 			}
 			//log 'content is '+ contentStr
-			contentStr = contentStr.deleteAll('<noindex>.+?</noindex>').trim()
+			contentStr = contentStr.deleteAll('<noindex>.+?</noindex>').trim().replaceAll('blockquote', 'div')
 			message.content = contentStr
 			for(Node node: post.xGetNodes{it.name() == 'img' && it.attribute('src')!= null && !it.attribute('src').contains('attachments') && !it.attribute('src').contains('http')}){
 				String imageURL = node.attribute('src')
