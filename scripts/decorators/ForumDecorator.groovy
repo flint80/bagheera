@@ -101,29 +101,30 @@ class ForumDecorator implements IScriptDecorator{
 			map = [:]
 		}
 		def definitions = []
-		if(useTimeStampValue){
-			if(map['timestamp'] != null){
-				startDateValue = map['timestamp']
-			}
-			definitions << [type: 'datetime', paramName: 'timestamp', title: 'Начало периода', value: startDateValue]
-		}
 		if(map['url'] != null){
 			url = map['url']
 		}
 		definitions << [type: 'text', paramName: 'url', title: 'URL форума', value: url]
 		def params = binding.getParameters.call(definitions)
-		if(useTimeStampValue){
-			startDateValue = params['timestamp']
-			if(!startDateValue){
-				binding.logError.call('start date is not defined')
-				binding.showError.call('не задано начала периода')
-				return
-			}
-		}
 		url = params['url']
 		if(Utils.isBlank(url)){
 			binding.logError.call('url is blank')
 			binding.showError.call('не URL форума')
+			return
+		}
+		String timestampParamName = Utils.cleanupFileName(url)+'_timestamp'
+		if(useTimeStampValue){
+			definitions = []
+			if(map[timestampParamName] != null){
+				startDateValue = map[timestampParamName]
+			}
+			definitions << [type: 'datetime', paramName: timestampParamName, title: 'Начало периода', value: startDateValue]
+			params = binding.getParameters.call(definitions)
+			startDateValue = params[timestampParamName]
+		}
+		if(!startDateValue){
+			binding.logError.call('start date is not defined')
+			binding.showError.call('не задано начала периода')
 			return
 		}
 		map['url'] = url
@@ -251,17 +252,17 @@ class ForumDecorator implements IScriptDecorator{
 		if(useTimeStampValue && confirmTimeStamp){
 			binding.updateProgress.call(99, 'Сохраняем метаданные')
 			params = binding.getParameters.call([
-				[type: 'datetime', paramName: 'timestamp', title: 'Дата последнего сообщения', value: lastDateTime]
+				[type: 'datetime', paramName: timestampParamName, title: 'Дата последнего сообщения', value: lastDateTime]
 			])
 			map = binding.getScriptMetadata.call()
 			if(!map){
 				map = [:]
 			}
-			map['timestamp'] = params['timestamp']
+			map[timestampParamName] = params[timestampParamName]
 			binding.saveScriptMetadata.call(map)
 		} else if(useTimeStampValue){
 			map = binding.getScriptMetadata.call()
-			map['timestamp'] = lastDateTime
+			map[timestampParamName] = lastDateTime
 			binding.saveScriptMetadata.call(map)
 		}
 		binding.updateProgress.call(100, 'Генерация закончена')
