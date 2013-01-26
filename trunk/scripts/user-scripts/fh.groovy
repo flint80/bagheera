@@ -23,7 +23,9 @@ forum('http://www.forumhouse.ru/styles/fh/logo.png'){
 		}
 	}
 
-	conversion{ grayscale true }
+	conversion{ grayscale false }
+
+	maxPostsCount(100)
 
 	extractTitle {String content ->
 		def res = content.findFirst('<div class="titleBar">\\s*<h1>(.+?)</h1>')

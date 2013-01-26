@@ -29,6 +29,8 @@ class ForumDecorator implements IScriptDecorator{
 	private boolean confirmTimeStamp = false
 
 	private Date startDateValue = null
+	
+	private int maxPostsCountValue = 1000
 
 	private Authorization authorization
 
@@ -70,6 +72,10 @@ class ForumDecorator implements IScriptDecorator{
 	Closure postProcessMessageInt = { ForumMessage message -> 
 		//noops
 	}
+	
+	Closure maxPostsCount = {int value->
+		maxPostsCountValue = value
+	}
 
 	@Override
 	public void decorate(Binding binding) {
@@ -97,7 +103,7 @@ class ForumDecorator implements IScriptDecorator{
 		def definitions = []
 		if(useTimeStampValue){
 			if(map['timestamp'] != null){
-				startDateValue = Utils.clearDate(map['timestamp'])
+				startDateValue = map['timestamp']
 			}
 			definitions << [type: 'datetime', paramName: 'timestamp', title: 'Начало периода', value: startDateValue]
 		}
@@ -138,6 +144,7 @@ class ForumDecorator implements IScriptDecorator{
 		if(authorization){
 			authorization.authorize(binding)
 		}
+		Date lastDateTime = null
 		try{
 			HTMLBook  book = new HTMLBook()
 			book.metadata = new HTMLBookMetadata()
@@ -147,46 +154,60 @@ class ForumDecorator implements IScriptDecorator{
 			book.metadata.genre = 'other'
 			book.metadata.publishDate = new Date()
 			book.metadata.lang = 'ru'
-			List messages = []
-			messages.addAll(extractMessagesInt(content))
 			binding.updateProgress.call(10,'Получаем содержимое форума')
-			int n = 1
-			url = extractNextPageUrlInt(content, n)
-			while (n < 1000 && (url != null)) {
-				n++
-				binding.showMessage.call('анализируем содержимое страницы ' + n)
-				content = binding.loadAsString.call url
-				url = extractNextPageUrlInt(content, n)
-				if (Utils.isBlank(content)) {
-					binding.logError.call('unable to get content of the' +n+ ' page of the forum')
-					binding.showError.call('не удалось загрузить содержимое страницы ' + n + ' форума')
-					continue
+			List messages = []
+			int count = 0
+			extractMessagesInt(content).each{
+				if(count > maxPostsCountValue){
+					return
 				}
-				messages.addAll(extractMessagesInt(content))
-			}
-			List hMessages = messages
-			messages = []
-			hMessages.each {
 				if(!it.date || !it.date.before(startDateValue)){
 					messages << it
+					count++
 				}
 			}
-			messages.sort {it.date? it.date: new Date()}
-			n = 0
+			if(count <= maxPostsCountValue){
+				int loadedPagesCount = 1
+						url = extractNextPageUrlInt(content, loadedPagesCount)
+						while ((count <= maxPostsCountValue) && (url != null)) {
+							loadedPagesCount++
+							binding.showMessage.call('анализируем содержимое страницы ' + loadedPagesCount)
+							content = binding.loadAsString.call url
+							url = extractNextPageUrlInt(content, loadedPagesCount)
+							if (Utils.isBlank(content)) {
+								binding.logError.call('unable to get content of the' +loadedPagesCount+ ' page of the forum')
+								binding.showError.call('не удалось загрузить содержимое страницы ' + loadedPagesCount + ' форума')
+								continue
+							}
+							extractMessagesInt(content).each{
+								if(count > maxPostsCountValue){
+									return
+								}
+								if(!it.date || !it.date.before(startDateValue)){
+									messages << it
+									count++
+								}
+							}
+						}
+			}
+			int loadedPagesCount = 0
 			messages.each {
 			    postProcessMessageInt(it)
-				n++
-				binding.updateProgress.call(20 + ((int) (50-20)*n/messages.size()),'Постобработка сообщений')
+				loadedPagesCount++
+				binding.updateProgress.call(20 + ((int) (50-20)*loadedPagesCount/messages.size()),'Постобработка сообщений')
 				}
 			Date lastDate = null
 			HTMLSection currentDateSection = null
-			int count = 0
+			count = 0
 			SimpleDateFormat sdf = new SimpleDateFormat('dd MMM')
 			messages.each {
-				if(count > 10000){
+				if(count > maxPostsCountValue){
 					return
 				}
 				count++
+				if(lastDateTime == null || (it.date!= null && lastDateTime.before(it.date))){
+					lastDateTime = it.date
+				}
 				Date sectDate = Utils.clearDate(it.date)
 				if(lastDate == null || !lastDate.equals(sectDate)){
 					lastDate = sectDate
@@ -230,7 +251,7 @@ class ForumDecorator implements IScriptDecorator{
 		if(useTimeStampValue && confirmTimeStamp){
 			binding.updateProgress.call(99, 'Сохраняем метаданные')
 			params = binding.getParameters.call([
-				[type: 'datetime', paramName: 'timestamp', title: 'Дата последнего сообщения', value: new Date()]
+				[type: 'datetime', paramName: 'timestamp', title: 'Дата последнего сообщения', value: lastDateTime]
 			])
 			map = binding.getScriptMetadata.call()
 			if(!map){
@@ -240,7 +261,7 @@ class ForumDecorator implements IScriptDecorator{
 			binding.saveScriptMetadata.call(map)
 		} else if(useTimeStampValue){
 			map = binding.getScriptMetadata.call()
-			map['timestamp'] = new Date()
+			map['timestamp'] = lastDateTime
 			binding.saveScriptMetadata.call(map)
 		}
 		binding.updateProgress.call(100, 'Генерация закончена')
