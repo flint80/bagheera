@@ -2,8 +2,10 @@
 
 showMessage 'готовим книжку - ждите...'
 rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
-	useTimeStamp(true,false)
+	usePeriod(false,7)
 	updateItem{
+		showMessage "обрабатываем пост ${it.sectionTitle}(url: ${it.relatedURL})"
+		log "updating item ${it.sectionTitle}, url: ${it.relatedURL}"
 		String content = loadAsString it.relatedURL
 		if(content){
 			String subContent = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
@@ -11,7 +13,7 @@ rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/
 				content = subContent
 			} else{
 				log "subcontent is null, content = $content"
-				it.htmlContent = ' '
+				//it.htmlContent = ' '
 				return
 			}
 			content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
@@ -22,7 +24,10 @@ rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/
 				log "reference to image $item is updated"
 			}
 			it.htmlContent = correctedContent
+			return
 		}
+		log "content is empty"
+
 	}
 }
 showMessage 'генерация книжки завершена'

@@ -167,8 +167,8 @@ class RssDecorator implements IScriptDecorator{
 		HTMLBook historyBook = binding.getScriptData.call 'history'
 		if(!historyBook){
 			historyBook = new HTMLBook()
+			historyBook.metadata = book.metadata
 		}
-		historyBook.metadata = book.metadata
 		node.channel[0].item.each{sec->
 			HTMLSection section = new HTMLSection()
 			section.htmlContent = sec.description.text()
@@ -176,9 +176,7 @@ class RssDecorator implements IScriptDecorator{
 			section.relatedURL = sec.link.text()
 			section.sectionTitle = sec.title.text()
 			boolean found = false
-			if(!historyBook.sections.find{it.sectionTitle == section.sectionTitle && it.relatedURL == section.relatedURL}){
-				book.sections << section
-			}
+			book.sections << section
 		}
 		//updating items
 		int endProgressValue = 50
@@ -190,7 +188,15 @@ class RssDecorator implements IScriptDecorator{
 			binding.updateProgress.call((int) Math.round(startProgressValue + ((double) currentItem)*(endProgressValue - startProgressValue)/totalItemsCount),'Обновляем историю')
 		}
 		book.sections.each{ it.htmlContent  = Utils.cleanupUrl(it.htmlContent)}
-		historyBook.sections.addAll(book.sections)
+		book.sections.each{HTMLSection sec ->
+			HTMLSection sec3 = historyBook.sections.find{HTMLSection sec2 ->
+				sec.sectionTitle == sec2.sectionTitle}
+			if(sec3){
+				sec3.htmlContent = sec.htmlContent
+				return
+			}
+			historyBook.sections << sec
+		}
 		//removing expired items from history and saving history
 		Date expireDate = new Date(new Date().getTime() - historyLength * 24L * 3600 *1000)
 		if(expireDate.before(startDateValue)){
