@@ -1,0 +1,12 @@
+# `CommunicationsDecorator` #
+
+В этом приложении описаны функции, добавленные `CommunicationsDecorator.groovy`. Он добавляет несколько полезных методов, для сохранения данных и диалога с пользователем.
+
+| Метод | Описание |
+|:------|:---------|
+| void showMessage(String message) | Добавляет cообщение message в список, который показывается во время работы скрипта. |
+| void showWarning(String message) | Добавляет предупреждение message в список, который показывается во время работы скрипта. |
+| void showError(String message) | Добавляет ошибку message в список, который показывается во время работы скрипта. |
+| `Map<String, Object> getParameters(List<Map<String, Object>> definitions)` | Вызывает getParameters из [IScriptCallback](IScriptCallback.md) |
+| void updateProgress(int progress, String message) | Вызывает updateProgress из [IScriptCallback](IScriptCallback.md) |
+| void debug() | Вызывает debug из [IScriptCallback](IScriptCallback.md) |

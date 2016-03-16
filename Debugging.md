@@ -1,0 +1,52 @@
+# Отладка #
+
+Еще один способ отладки скрипта - это использование команды debug .
+
+> Рассмотрим немного модифицированный скрипт обработки сайта Копмьютерры
+
+```
+
+//@ description Computerra (Debug)
+showMessage 'готовим книжку - ждите...'
+rss('http://feeds.feedburner.com/ct_news?format=xml', 'http://www.computerra.ru/new/logo2.gif'){
+	useTimeStamp(true,false)
+	updateItem{
+		String content = loadAsString it.relatedURL
+		if(content){
+			String subContent = content.findFirst('<div id="content">(.*)<div id="fin">', '<!-- start -->(.*)<!-- fin -->', '<div id="content">(.*)')
+			if(subContent){
+				content = subContent
+			} else{
+				log "subcontent is null, content = $content"
+				it.htmlContent = ' '
+				return
+			}
+			content = content.deleteAll('<form.+?/form>','<noscript.+?/noscript>', '<iframe.+?/>')
+			it.htmlContent = content
+			binding.item = it
+			debug()
+		}
+	}
+}
+showMessage 'генерация книжки завершена'	
+
+```
+
+> Он отличается от скрипта, рассмотренного в [rss\_script.html Обработка RSS-ленты] строками
+
+```
+
+binding.item = it
+debug()
+
+```
+
+В этой строке в контекст скрипта кладется переменная item , которая является экземпляром класса [HTMLSection](HTMLSection.md) и представляет содержимое текущего поста.
+
+В следующей строке при вызове функции debug() выполнение скрипта приостанавливается и окно приобретаетс примерно следующий следующий вид:
+
+![http://bagheera.googlecode.com/svn/trunk/help/using_program/figures/debug.png](http://bagheera.googlecode.com/svn/trunk/help/using_program/figures/debug.png)
+
+Если в верхнем текстовом поле ввести item и нажать _Выполнить_ , то в нижнем текстовом поле отобразится результат: содержимое переменной binding.item . А если выполнить строку item.sectionTitle='Modified title' , то Вы измените значение sectionTitle текущего сообщения. Если нажать _Продолжить_ , то Вы выйдете из режима отладки.
+
+На самом деле, это не полноценная отладка. Просто поток, выполняющий текущий скрипт приостанавливается, и запускается новый поток, который выполняет скрипт, который Вы вводите в верхнем поле. При этом, для обоих скриптов используется один и тот же контекст ( binding ), через который можно получить доступ к переменным исходного скрипта.

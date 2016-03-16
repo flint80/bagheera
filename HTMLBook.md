@@ -1,0 +1,41 @@
+# HTMLBook #
+
+В принципе, этот класс можно рассматривать как модель FB2-книги. Если Вы смогли создать экземпляр HTMLBook , то можно воспользоваться стандартной функцией конвертации в FB2-формат.
+
+Table 1. HTMLBookAuthor
+
+| Поле | Описание |
+|:-----|:---------|
+| String firstName | имя автора |
+| String lastName | фамилия автора |
+
+Table 2. HTMLBookMetadata
+
+| Поле | Описание |
+|:-----|:---------|
+| String genre | текстовое описания жанра книги(значение по-умолчанию: "science") |
+| HTMLBookAuthor author | описание автора книги |
+| String bookTitle | название книги |
+| Date publishDate | дата публикации книги |
+| String coverPageURL | адрес изображения, которое используется в качестве обложки книги |
+| String lang | язык книги (по-умолчанию: 'ru') |
+
+Table 3. HTMLSection
+
+| Поле | Описание |
+|:-----|:---------|
+| HTMLBookAuthor sectionAuthor | описание автора раздела |
+| String htmlContent | содержимое раздела в HTML-формате |
+| Date sectionDate | дата создания секции |
+| Date sectionDate | дата создания секции |
+| String sectionTitle | заголовок секции |
+| String sectionTitle | заголовок секции |
+| String relatedURL | ссылка на HTML-страничку, которая соответствует этому разделу (например, если раздел - это RSS-новость, то relatedURL - это адрес странички с полной версией статьи) |
+| List nestedSections | коллекция вложенных разделов |
+
+Table 4. HTMLBook
+
+| Поле | Описание |
+|:-----|:---------|
+| HTMLBookMetadata metadata | описание книги |
+| List sections | коллекция разделов |

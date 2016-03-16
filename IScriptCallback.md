@@ -1,0 +1,19 @@
+# `IScriptCallback` #
+
+Этот класс обеспечивает взаимодействие скрипта с интерфейсом.
+
+Table 1. `com.flinty.book.bagheera.model.IScriptCalback`
+
+| Метод | Описание |
+|:------|:---------|
+| void updateProgress(int progress, String message) | обновляет progress-bar; progress - значение от 0 до 100, message - описание выполняемого действия |
+| showMessage( [Message](Message.md) message) | показавает пользователю сообщение |
+| void setOutputFile(java.io.File outputFile) | уведомляет основной модуль о том, что файл создан; при этом на интерфейсе становится доступна кнопка "Открыть" |
+| void setWorkFinished() | уведомляет основной модуль о том, что процесс создания книги завершен; при этом становятся доступными навигационные кнопки |
+| `Map<String, Object> getParameters(List<Map<String, Object>> definitions)` || Запрашивает пользователя ввести значения параметров. Аргумент - это список `Map<String, Object>` , каждый элемент которого состоит из пар:      # type: String - тип параметра. На данный момент поддерживаются: 'int' -число, 'text' - строка, 'date' - дата (в формате "yyyy-MM-dd") и 'datetime' - дата (в формате "yyyy-MM-dd-HH-mm")    # paramName: String - идентификатор параметра    # title: String - название параметра, которое отобразится в диалоговом окне    # value: Object - значение параметра по-умолчанию (параметр опционален) Метод возвращает набор пар Map<String, Object>, в которых в качестве ключей используются paramName, а в качестве значений - то, что ввел пользователь. Приведу пример использования этого метода: {{{ def params = binding.getParameters.call([|
+> [type: 'int', paramName: 'days', title: 'Кол-во дней', value: defaultValue]
+> > ])
+
+> log 'retrieve period is ' + params['days']
+> }}} 
+| void debug(groovy.lang.Binding binding) | приостанавливает выполнение скрипта и выводит диалоговое окно отладки |
