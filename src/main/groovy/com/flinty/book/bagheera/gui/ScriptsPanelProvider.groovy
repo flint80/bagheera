@@ -53,7 +53,7 @@ class ScriptsPanelProvider implements IContentProvider{
 		}
 		startButton = Utils.createToolButton('Старт', '/images/run.gif', {
 			if(fileList.selectedIndex != -1){
-				processScript(fileList.selectedValue)
+				processScript(fileList.selectedValue)getFiles
 			}
 		})
 		startButton.enabled = false
@@ -90,7 +90,8 @@ class ScriptsPanelProvider implements IContentProvider{
 
 	@Override
 	public void updateContent() {
-		fileList.listData = Environment.userScriptsProvider.getFiles()
+		List files = Environment.userScriptsProvider.getFiles()
+		fileList.setListData(files.toArray(new FileInfo[files.size()]))
 	}
 
 	@Override

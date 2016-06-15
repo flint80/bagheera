@@ -11,7 +11,6 @@
 	<classpathentry kind="lib" path="lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-httpclient-3.1.jar" sourcepath="lib/src/httpclient.zip"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar" sourcepath="lib/src/commons-logging-1.1.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/groovy-all-2.0.0.jar" sourcepath="lib/src/groovy-all-2.0.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/htmlcleaner2_1.jar"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar" sourcepath="lib/src/log4j-1.2.16-sources.jar"/>
@@ -26,6 +25,7 @@
 	<classpathentry kind="lib" path="lib/httpclient-cache-4.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.2.2.jar" sourcepath="lib/src/http-core-4.zip"/>
 	<classpathentry kind="lib" path="lib/httpmime-4.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-2.4.6.jar" sourcepath="lib/src/groovy-all-2.4.6-sources.jar"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
